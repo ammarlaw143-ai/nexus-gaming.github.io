@@ -1,9 +1,9 @@
+cat > /mnt/user-data/outputs/nexus-gaming/index.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="NexusPlay — Pro Gaming Hub with 1,200+ games, guides, commands & live gaming news.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NexusPlay | Pro Gaming Hub</title>
 
 
@@ -12,16 +12,17 @@
      crossorigin="anonymous"></script>
 
 
+  
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --cyan:#00f5ff;--mag:#ff00aa;--purple:#8b5cf6;--green:#39ff14;
   --orange:#ff6b00;--yellow:#ffe600;--red:#ff2d78;
-  --bg:#06060f;--card:rgba(14,14,30,.92);--dim:#9898b8;--white:#f0f0ff;
+  --bg:#06060f;--card:rgba(14,14,30,.93);--dim:#9898b8;--white:#f0f0ff;
   --border:rgba(0,245,255,.18);
   --grad:linear-gradient(90deg,#00f5ff,#ff00aa,#8b5cf6);
-  --shadow:0 0 22px rgba(0,245,255,.28),0 0 44px rgba(255,0,170,.1);
-  --fg:'Orbitron',monospace;--fb:'Rajdhani',sans-serif;--r:14px;
+  --shadow:0 0 22px rgba(0,245,255,.3),0 0 44px rgba(255,0,170,.12);
+  --fg:'Orbitron',monospace;--fb:'Rajdhani',sans-serif;--r:13px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -29,328 +30,269 @@ body{font-family:var(--fb);background:var(--bg);color:var(--white);overflow-x:hi
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(139,92,246,.13),transparent),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(255,0,170,.08),transparent);pointer-events:none;z-index:0}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#08081a}::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--purple));border-radius:3px}
 #bgCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-
-/* FALLING CONSOLES */
 .controllers{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-.controllers span{position:absolute;font-size:30px;opacity:.15;animation:ctrlFall linear infinite}
-.controllers span:nth-child(1){left:4%;animation-duration:9s;animation-delay:0s}
-.controllers span:nth-child(2){left:14%;animation-duration:13s;animation-delay:2s}
-.controllers span:nth-child(3){left:26%;animation-duration:11s;animation-delay:4s}
-.controllers span:nth-child(4){left:42%;animation-duration:15s;animation-delay:1s}
-.controllers span:nth-child(5){left:58%;animation-duration:10s;animation-delay:3s}
-.controllers span:nth-child(6){left:72%;animation-duration:12s;animation-delay:5s}
-.controllers span:nth-child(7){left:85%;animation-duration:8s;animation-delay:1.5s}
-.controllers span:nth-child(8){left:94%;animation-duration:14s;animation-delay:3.5s}
+.controllers span{position:absolute;font-size:28px;opacity:.15;animation:ctrlFall linear infinite}
+.controllers span:nth-child(1){left:4%;animation-duration:9s;animation-delay:0s}.controllers span:nth-child(2){left:14%;animation-duration:13s;animation-delay:2s}.controllers span:nth-child(3){left:26%;animation-duration:11s;animation-delay:4s}.controllers span:nth-child(4){left:42%;animation-duration:15s;animation-delay:1s}.controllers span:nth-child(5){left:58%;animation-duration:10s;animation-delay:3s}.controllers span:nth-child(6){left:72%;animation-duration:12s;animation-delay:5s}.controllers span:nth-child(7){left:85%;animation-duration:8s;animation-delay:1.5s}.controllers span:nth-child(8){left:94%;animation-duration:14s;animation-delay:3.5s}
 @keyframes ctrlFall{0%{transform:translateY(-80px) rotate(0deg)}100%{transform:translateY(105vh) rotate(360deg)}}
-
-/* PAGES */
-.page{display:none;min-height:100vh;position:relative;z-index:1}
-.page.active{display:block}
+.page{display:none;min-height:100vh;position:relative;z-index:1}.page.active{display:block}
 .wrap{width:min(1280px,94vw);margin:0 auto;position:relative;z-index:2}
-
-/* ===== NAV ===== */
-nav{position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(6,6,15,.96);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,245,255,.14)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.5rem;gap:.8rem}
-.logo{font-family:var(--fg);font-size:1.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:9000;background:rgba(6,6,15,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,245,255,.14)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.4rem;gap:.7rem}
+.logo{font-family:var(--fg);font-size:1.15rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:2px;cursor:pointer;white-space:nowrap;flex-shrink:0}
 .logo em{-webkit-text-fill-color:var(--green);font-style:normal}
-.nav-links{display:flex;list-style:none;gap:.1rem;flex-wrap:wrap}
-.nav-links a{color:var(--dim);font-weight:600;font-size:.82rem;padding:.38rem .72rem;border-radius:8px;text-transform:uppercase;letter-spacing:.8px;transition:all .2s;cursor:pointer;white-space:nowrap}
+.nav-links{display:flex;list-style:none;gap:.08rem;flex-wrap:wrap}
+.nav-links a{color:var(--dim);font-weight:600;font-size:.78rem;padding:.35rem .65rem;border-radius:8px;text-transform:uppercase;letter-spacing:.7px;transition:all .2s;cursor:pointer;white-space:nowrap}
 .nav-links a:hover,.nav-links a.on{background:rgba(0,245,255,.1);color:var(--cyan)}
-.nav-toggle{display:none;background:none;border:1.5px solid var(--cyan);color:var(--cyan);font-size:1.2rem;padding:.28rem .55rem;border-radius:8px;cursor:pointer;flex-shrink:0}
-/* mobile nav */
-.mobile-nav{display:none;flex-direction:column;background:rgba(6,6,15,.98);border-bottom:1px solid var(--border);padding:.8rem 1.5rem;gap:.3rem;position:fixed;top:54px;left:0;right:0;z-index:8999}
-.mobile-nav.open{display:flex}
-.mobile-nav a{color:var(--dim);font-weight:600;font-size:.9rem;padding:.55rem .8rem;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.8px}
-.mobile-nav a:hover{background:rgba(0,245,255,.1);color:var(--cyan)}
-
-/* DISCLAIMER BANNER */
-.disclaimer{background:linear-gradient(90deg,rgba(255,230,0,.12),rgba(255,107,0,.1),rgba(255,230,0,.12));border-top:2px solid var(--yellow);border-bottom:2px solid var(--orange);padding:.55rem 1.5rem;text-align:center;position:relative;z-index:2;font-family:var(--fb);font-size:.85rem;font-weight:700;color:var(--yellow);letter-spacing:.5px}
-.disclaimer span{background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.disclaimer strong{color:var(--green);-webkit-text-fill-color:var(--green)}
-
+.nav-toggle{display:none;background:none;border:1.5px solid var(--cyan);color:var(--cyan);font-size:1.15rem;padding:.25rem .52rem;border-radius:8px;cursor:pointer;flex-shrink:0}
+.mnav{display:none;flex-direction:column;background:rgba(6,6,15,.99);border-bottom:1px solid var(--border);padding:.7rem 1.4rem;gap:.25rem;position:fixed;top:52px;left:0;right:0;z-index:8999}
+.mnav.open{display:flex}
+.mnav a{color:var(--dim);font-weight:600;font-size:.88rem;padding:.5rem .75rem;border-radius:8px;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.7px}
+.mnav a:hover{background:rgba(0,245,255,.1);color:var(--cyan)}
+/* DISCLAIMER */
+.disc{background:linear-gradient(90deg,rgba(255,230,0,.1),rgba(255,107,0,.09),rgba(255,230,0,.1));border-top:2px solid var(--yellow);border-bottom:2px solid var(--orange);padding:.5rem 1.4rem;text-align:center;position:relative;z-index:2;font-size:.78rem;font-weight:700;color:var(--yellow);letter-spacing:.4px;line-height:1.5;margin-top:52px}
+.disc span{background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.disc strong{color:var(--green);-webkit-text-fill-color:var(--green)}
 /* SCROLL INDICATOR */
-.scroll-ind{position:fixed;right:1rem;top:50%;transform:translateY(-50%);z-index:8000;display:flex;flex-direction:column;align-items:center;gap:.35rem;transition:opacity .3s}
+.scroll-ind{position:fixed;right:.9rem;top:50%;transform:translateY(-50%);z-index:8000;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:opacity .3s}
 .scroll-ind.hidden{opacity:0;pointer-events:none}
 .sd{width:7px;height:7px;border-radius:50%;background:var(--dim);transition:all .3s}
-.sd.on{background:var(--cyan);box-shadow:0 0 10px var(--cyan);transform:scale(1.45)}
-.scroll-arr{display:flex;flex-direction:column;align-items:center;cursor:pointer;animation:arrBounce 1.5s ease-in-out infinite;margin-top:.4rem}
-.scroll-arr svg{width:20px;height:20px;fill:none;stroke:var(--cyan);stroke-width:2.5;filter:drop-shadow(0 0 5px var(--cyan))}
-@keyframes arrBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-
+.sd.on{background:var(--cyan);box-shadow:0 0 9px var(--cyan);transform:scale(1.4)}
+.scroll-arr{display:flex;flex-direction:column;align-items:center;cursor:pointer;animation:arrB 1.5s ease-in-out infinite;margin-top:.35rem}
+.scroll-arr svg{width:19px;height:19px;fill:none;stroke:var(--cyan);stroke-width:2.5;filter:drop-shadow(0 0 5px var(--cyan))}
+@keyframes arrB{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.68rem 1.5rem;font-family:var(--fg);font-weight:700;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;transition:all .25s;white-space:nowrap}
-.btn-p{background:var(--grad);color:#fff;box-shadow:var(--shadow)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(0,245,255,.55)}
-.btn-o{background:transparent;color:var(--cyan);border:1.5px solid var(--cyan)}
-.btn-o:hover{background:rgba(0,245,255,.1);transform:translateY(-2px)}
-.btn-sm{padding:.32rem .72rem;font-size:.65rem}
-.grad-txt{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-
+.btn{display:inline-flex;align-items:center;gap:.38rem;padding:.65rem 1.4rem;font-family:var(--fg);font-weight:700;font-size:.73rem;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:var(--r);cursor:pointer;transition:all .25s;white-space:nowrap}
+.btn-p{background:var(--grad);color:#fff;box-shadow:var(--shadow)}.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(0,245,255,.55)}
+.btn-g{background:linear-gradient(90deg,#39ff14,#00f5ff);color:#000}.btn-g:hover{transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--cyan);border:1.5px solid var(--cyan)}.btn-o:hover{background:rgba(0,245,255,.1);transform:translateY(-2px)}
+.gt{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 /* TICKER */
-.ticker-wrap{overflow:hidden;padding:.65rem 0;background:linear-gradient(90deg,rgba(0,245,255,.06),rgba(139,92,246,.06),rgba(255,0,170,.06));border-top:1px solid rgba(0,245,255,.13);border-bottom:1px solid rgba(255,0,170,.1);position:relative;z-index:2}
-.ticker{display:flex;gap:2.2rem;white-space:nowrap;animation:tickMove 26s linear infinite;font-family:var(--fg);font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-@keyframes tickMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-wrap{overflow:hidden;padding:.62rem 0;background:linear-gradient(90deg,rgba(0,245,255,.06),rgba(139,92,246,.06),rgba(255,0,170,.06));border-top:1px solid rgba(0,245,255,.13);border-bottom:1px solid rgba(255,0,170,.1);position:relative;z-index:2}
+.ticker{display:flex;gap:2rem;white-space:nowrap;animation:tickM 26s linear infinite;font-family:var(--fg);font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+@keyframes tickM{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .ti{color:var(--cyan)}.ti:nth-child(3n+2){color:var(--mag)}.ti:nth-child(3n+3){color:var(--green)}
-
 /* HERO */
-.hero{padding:7rem 1.5rem 4rem;text-align:center;position:relative;z-index:2}
-.hero-badge{display:inline-block;background:rgba(255,0,170,.14);border:1px solid var(--mag);color:var(--mag);padding:.3rem .9rem;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.2rem;animation:badgeGlow 2s ease-in-out infinite}
-@keyframes badgeGlow{0%,100%{box-shadow:0 0 10px rgba(255,0,170,.3)}50%{box-shadow:0 0 22px rgba(255,0,170,.65)}}
-.hero h1{font-family:var(--fg);font-size:clamp(2rem,6vw,4.8rem);font-weight:900;line-height:1.05;margin-bottom:1rem;background:linear-gradient(180deg,#fff 25%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero h1 .hl{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(0,245,255,.4))}
-.hero p{font-size:1.05rem;color:var(--dim);max-width:620px;margin:0 auto 1.8rem;line-height:1.7}
-.hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
-.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.hero{padding:6.5rem 1.4rem 3.5rem;text-align:center;position:relative;z-index:2}
+.hero-badge{display:inline-block;background:rgba(255,0,170,.14);border:1px solid var(--mag);color:var(--mag);padding:.28rem .85rem;border-radius:50px;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.1rem;animation:badgeG 2s ease-in-out infinite}
+@keyframes badgeG{0%,100%{box-shadow:0 0 9px rgba(255,0,170,.3)}50%{box-shadow:0 0 22px rgba(255,0,170,.65)}}
+.hero h1{font-family:var(--fg);font-size:clamp(1.9rem,5.5vw,4.5rem);font-weight:900;line-height:1.05;margin-bottom:.95rem;background:linear-gradient(180deg,#fff 25%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .hl{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 18px rgba(0,245,255,.4))}
+.hero p{font-size:1rem;color:var(--dim);max-width:600px;margin:0 auto 1.7rem;line-height:1.7}
+.hero-btns{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.2rem}
+.hero-stats{display:flex;justify-content:center;gap:1.8rem;flex-wrap:wrap}
 .hs{text-align:center}
-.hs-n{font-family:var(--fg);font-size:1.9rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hs-l{color:var(--dim);font-size:.7rem;text-transform:uppercase;letter-spacing:2px}
-
+.hs-n{font-family:var(--fg);font-size:1.8rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hs-l{color:var(--dim);font-size:.68rem;text-transform:uppercase;letter-spacing:2px}
 /* BREAKING */
-.breaking-banner{background:linear-gradient(135deg,rgba(255,107,0,.12),rgba(255,0,170,.07));border:1px solid rgba(255,107,0,.4);border-radius:14px;padding:1.2rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.2rem;cursor:pointer;transition:all .3s;flex-wrap:wrap}
-.breaking-banner:hover{box-shadow:0 0 22px rgba(255,107,0,.25);transform:translateY(-2px)}
-.break-label{font-family:var(--fg);font-size:.62rem;font-weight:700;background:var(--orange);color:#000;padding:.22rem .6rem;border-radius:50px;letter-spacing:1.5px;white-space:nowrap;flex-shrink:0}
-.break-title{font-family:var(--fg);font-size:.9rem;font-weight:700}
-.break-sub{font-size:.8rem;color:var(--dim);margin-top:.25rem}
-.break-arrow{font-size:1.3rem;color:var(--orange);margin-left:auto}
-
-/* SECTIONS */
-section{padding:3.5rem 0;position:relative;z-index:2}
-.sec-hdr{text-align:center;margin-bottom:2rem}
-.sec-hdr h2{font-family:var(--fg);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;margin-bottom:.35rem}
-.sec-hdr p{color:var(--dim);font-size:.92rem}
-.sec-tag{display:inline-block;color:var(--green);font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:.7rem;margin-bottom:.35rem}
-.sec-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:.8rem}
-.sec-row h2{font-family:var(--fg);font-size:clamp(1.4rem,3vw,2rem);font-weight:700}
-.see-all{font-family:var(--fg);font-weight:700;font-size:.68rem;color:var(--cyan);border:1px solid rgba(0,245,255,.3);padding:.32rem .85rem;border-radius:8px;cursor:pointer;transition:all .2s;background:none;letter-spacing:1px}
-.see-all:hover{background:rgba(0,245,255,.1);box-shadow:0 0 15px rgba(0,245,255,.22)}
-
+.bb{background:linear-gradient(135deg,rgba(255,107,0,.12),rgba(255,0,170,.07));border:1px solid rgba(255,107,0,.4);border-radius:13px;padding:1.1rem 1.4rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:1rem;cursor:pointer;transition:all .3s;flex-wrap:wrap}
+.bb:hover{box-shadow:0 0 20px rgba(255,107,0,.25);transform:translateY(-2px)}
+.bbl{font-family:var(--fg);font-size:.6rem;font-weight:700;background:var(--orange);color:#000;padding:.2rem .55rem;border-radius:50px;letter-spacing:1.5px;white-space:nowrap;flex-shrink:0}
+.bbt{font-family:var(--fg);font-size:.88rem;font-weight:700}
+.bbs{font-size:.78rem;color:var(--dim);margin-top:.22rem}
+.bba{font-size:1.2rem;color:var(--orange);margin-left:auto}
+/* SECTION */
+section{padding:3rem 0;position:relative;z-index:2}
+.sh{text-align:center;margin-bottom:1.8rem}
+.sh h2{font-family:var(--fg);font-size:clamp(1.4rem,3.2vw,2.1rem);font-weight:700;margin-bottom:.3rem}
+.sh p{color:var(--dim);font-size:.9rem}
+.st{display:inline-block;color:var(--green);font-weight:700;letter-spacing:3px;text-transform:uppercase;font-size:.68rem;margin-bottom:.3rem}
+.sr{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.8rem;flex-wrap:wrap;gap:.7rem}
+.sr h2{font-family:var(--fg);font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700}
+.sa{font-family:var(--fg);font-weight:700;font-size:.65rem;color:var(--cyan);border:1px solid rgba(0,245,255,.3);padding:.3rem .82rem;border-radius:8px;cursor:pointer;transition:all .2s;background:none;letter-spacing:1px}
+.sa:hover{background:rgba(0,245,255,.1)}
 /* STATS */
-.stats-row{display:flex;justify-content:center;flex-wrap:wrap;gap:1.2rem;padding:2rem 0}
-.stat-box{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:1.5rem 1.8rem;border-radius:16px;min-width:140px;text-align:center;box-shadow:0 0 12px rgba(0,245,255,.1);transition:all .3s}
-.stat-box:hover{box-shadow:0 0 25px rgba(0,245,255,.3);transform:translateY(-4px)}
-.stat-box h2{font-family:var(--fg);font-size:2.2rem;font-weight:900;color:var(--green)}
-.stat-box p{color:var(--dim);font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:.25rem}
-
+.stats-row{display:flex;justify-content:center;flex-wrap:wrap;gap:1.1rem;padding:1.8rem 0}
+.sbox{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:1.4rem 1.7rem;border-radius:15px;min-width:130px;text-align:center;box-shadow:0 0 11px rgba(0,245,255,.1);transition:all .3s}
+.sbox:hover{box-shadow:0 0 24px rgba(0,245,255,.3);transform:translateY(-4px)}
+.sbox h2{font-family:var(--fg);font-size:2rem;font-weight:900;color:var(--green)}
+.sbox p{color:var(--dim);font-size:.68rem;text-transform:uppercase;letter-spacing:1.5px;margin-top:.22rem}
 /* GENRE */
-.genre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:.8rem}
-.gp{display:flex;flex-direction:column;align-items:center;gap:.4rem;padding:1.1rem .7rem;border-radius:14px;background:var(--card);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:all .3s;font-family:var(--fb);font-weight:700;font-size:.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--white);text-align:center}
-.gp:hover{transform:translateY(-5px);border-color:var(--gc,var(--cyan));box-shadow:0 0 18px color-mix(in srgb,var(--gc,var(--cyan)) 35%,transparent);color:var(--gc,var(--cyan))}
-.gp .gi{font-size:1.6rem;line-height:1}
-
+.genre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:.75rem}
+.gp{display:flex;flex-direction:column;align-items:center;gap:.38rem;padding:1rem .65rem;border-radius:13px;background:var(--card);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:all .3s;font-family:var(--fb);font-weight:700;font-size:.73rem;letter-spacing:1px;text-transform:uppercase;color:var(--white);text-align:center}
+.gp:hover{transform:translateY(-5px);border-color:var(--gc,var(--cyan));box-shadow:0 0 16px color-mix(in srgb,var(--gc,var(--cyan)) 35%,transparent);color:var(--gc,var(--cyan))}
+.gp .gi{font-size:1.5rem;line-height:1}
 /* GRIDS */
-.grid{display:grid;gap:1.1rem}
-.g4{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
-.g3{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
-.g2{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-
+.grid{display:grid;gap:1rem}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
 /* GAME CARDS */
-.gc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
-.gc:hover{transform:translateY(-6px);border-color:rgba(0,245,255,.4);box-shadow:var(--shadow)}
-.gc-img-wrap{position:relative;height:148px;background:#0d0d20;overflow:hidden}
+.gc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.gc:hover{transform:translateY(-6px);border-color:rgba(0,245,255,.42);box-shadow:var(--shadow)}
+.gc-iw{position:relative;height:145px;background:#0d0d1e;overflow:hidden;flex-shrink:0}
 .gc-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .gc:hover .gc-img{transform:scale(1.07)}
-.gc-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-family:var(--fg);font-weight:900;color:rgba(255,255,255,.85);letter-spacing:1px;z-index:1}
-.gc-overlay{position:absolute;inset:0;background:rgba(0,0,0,.52);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:3;font-family:var(--fg);font-size:.75rem;font-weight:700;color:var(--cyan);letter-spacing:3px}
-.gc:hover .gc-overlay{opacity:1}
-/* FREE BADGE */
-.free-badge{position:absolute;top:.5rem;left:.5rem;z-index:4;background:var(--green);color:#000;font-family:var(--fg);font-size:.55rem;font-weight:900;letter-spacing:1.5px;padding:.18rem .5rem;border-radius:4px;text-transform:uppercase}
-.paid-badge{position:absolute;top:.5rem;left:.5rem;z-index:4;background:var(--yellow);color:#000;font-family:var(--fg);font-size:.55rem;font-weight:900;letter-spacing:1.5px;padding:.18rem .5rem;border-radius:4px;text-transform:uppercase}
-.gc-body{padding:.8rem .9rem}
-.gc-title{font-family:var(--fg);font-size:.82rem;font-weight:700;margin-bottom:.35rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gc-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem;gap:.3rem;flex-wrap:wrap}
-.tag{font-size:.6rem;font-weight:700;padding:.15rem .5rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.gc-fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-family:var(--fg);font-weight:900;color:rgba(255,255,255,.85);letter-spacing:1px;z-index:1;background:var(--fbg,#111)}
+.gc-ov{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:3;font-family:var(--fg);font-size:.7rem;font-weight:700;color:var(--cyan);letter-spacing:2.5px}
+.gc:hover .gc-ov{opacity:1}
+.fbadge{position:absolute;top:.45rem;left:.45rem;z-index:4;font-family:var(--fg);font-size:.52rem;font-weight:900;letter-spacing:1.5px;padding:.16rem .48rem;border-radius:4px;text-transform:uppercase}
+.fbadge.free{background:var(--green);color:#000}
+.fbadge.paid{background:var(--yellow);color:#000}
+.gc-body{padding:.75rem .88rem}
+.gc-title{font-family:var(--fg);font-size:.8rem;font-weight:700;margin-bottom:.32rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gc-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:.38rem;gap:.25rem;flex-wrap:wrap}
+.tag{font-size:.58rem;font-weight:700;padding:.14rem .48rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
 .tc{background:rgba(0,245,255,.12);color:var(--cyan);border:1px solid rgba(0,245,255,.25)}
-.tp{background:rgba(139,92,246,.13);color:var(--purple);border:1px solid rgba(139,92,246,.28)}
-.to{background:rgba(255,107,0,.12);color:var(--orange);border:1px solid rgba(255,107,0,.25)}
+.tp{background:rgba(139,92,246,.13);color:var(--purple);border:1px solid rgba(139,92,246,.27)}
+.to{background:rgba(255,107,0,.12);color:var(--orange);border:1px solid rgba(255,107,0,.24)}
 .tg{background:rgba(57,255,20,.1);color:var(--green);border:1px solid rgba(57,255,20,.22)}
 .tm{background:rgba(255,0,170,.1);color:var(--mag);border:1px solid rgba(255,0,170,.22)}
 .ty{background:rgba(255,230,0,.1);color:var(--yellow);border:1px solid rgba(255,230,0,.22)}
-.gc-rating{font-size:.72rem;color:var(--yellow);margin-bottom:.45rem}
-.gc-price{font-family:var(--fg);font-size:.65rem;font-weight:700;color:var(--green)}
+.gc-rating{font-size:.7rem;color:var(--yellow);margin-bottom:.38rem}
+.gc-price{font-family:var(--fg);font-size:.62rem;font-weight:700;color:var(--green)}
 .gc-price.paid{color:var(--yellow)}
-
-/* MINI GAMES */
-.mini-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
-.mini-card:hover{transform:translateY(-6px);border-color:rgba(57,255,20,.4);box-shadow:0 0 20px rgba(57,255,20,.2)}
-.mini-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
-.mini-thumb::after{content:'▶ PLAY FREE';position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-family:var(--fg);font-size:.7rem;font-weight:700;color:var(--green);letter-spacing:2px;opacity:0;transition:opacity .3s}
-.mini-card:hover .mini-thumb::after{opacity:1}
-.mini-body{padding:.8rem .9rem}
-.mini-title{font-family:var(--fg);font-size:.8rem;font-weight:700;margin-bottom:.3rem}
-.mini-sub{color:var(--dim);font-size:.78rem;margin-bottom:.5rem}
-
-/* NEWS CARDS */
-.nc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.4rem;transition:all .3s;overflow:hidden}
+/* MINI GAME CARDS */
+.mc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.mc:hover{transform:translateY(-6px);border-color:rgba(57,255,20,.4);box-shadow:0 0 20px rgba(57,255,20,.2)}
+.mc-thumb{height:115px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;position:relative;overflow:hidden;flex-shrink:0}
+.mc-img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.mc-emoji{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;z-index:1}
+.mc-ov{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:3;font-family:var(--fg);font-size:.7rem;font-weight:700;color:var(--green);letter-spacing:2px}
+.mc:hover .mc-ov{opacity:1}
+.mc-body{padding:.75rem .88rem}
+.mc-title{font-family:var(--fg);font-size:.78rem;font-weight:700;margin-bottom:.28rem}
+.mc-sub{color:var(--dim);font-size:.75rem;margin-bottom:.45rem}
+/* NEWS */
+.nc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:1.3rem;transition:all .3s;overflow:hidden}
 .nc:hover{transform:translateY(-5px);border-color:rgba(0,245,255,.32);box-shadow:var(--shadow)}
 .nc.hot{border-color:rgba(255,107,0,.35);background:linear-gradient(135deg,rgba(255,107,0,.06),rgba(255,0,170,.04))}
-.nc-img{width:100%;height:130px;object-fit:cover;border-radius:10px;margin-bottom:.9rem;background:#111;display:block}
-.nc-date{font-size:.7rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:.35rem}
-.nc h3{font-family:var(--fg);font-size:.9rem;font-weight:700;margin-bottom:.5rem;line-height:1.3}
-.nc p{color:var(--dim);font-size:.83rem;line-height:1.6;margin-bottom:.7rem}
-.nc a{color:var(--cyan);font-weight:700;font-size:.78rem;cursor:pointer}
-
+.nc-img{width:100%;height:125px;object-fit:cover;border-radius:9px;margin-bottom:.85rem;background:#111;display:block}
+.nc-date{font-size:.68rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:.32rem}
+.nc h3{font-family:var(--fg);font-size:.87rem;font-weight:700;margin-bottom:.45rem;line-height:1.3}
+.nc p{color:var(--dim);font-size:.82rem;line-height:1.6;margin-bottom:.65rem}
+.nc a{color:var(--cyan);font-weight:700;font-size:.76rem;cursor:pointer}
 /* GUIDE CARDS */
-.gdc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;display:block}
+.gdc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;overflow:hidden;cursor:pointer;transition:all .3s;display:block}
 .gdc:hover{transform:translateY(-6px);border-color:rgba(0,245,255,.38);box-shadow:var(--shadow)}
-.gdc-thumb{height:100px;display:flex;align-items:center;justify-content:center;font-family:var(--fg);font-size:1.5rem;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:2px;position:relative;overflow:hidden}
-.gdc-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
-.gdc-thumb span{position:relative;z-index:1;text-shadow:0 0 20px rgba(0,0,0,.8)}
-.gdc-body{padding:.9rem 1rem}
-.gdc-body h3{font-family:var(--fg);font-size:.85rem;font-weight:700;margin-bottom:.35rem}
-.gdc-body p{color:var(--dim);font-size:.8rem;margin:.3rem 0 .6rem}
-
+.gdc-thumb{height:95px;display:flex;align-items:center;justify-content:center;font-family:var(--fg);font-size:1.4rem;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:2px;position:relative;overflow:hidden}
+.gdc-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
+.gdc-thumb span{position:relative;z-index:1;text-shadow:0 0 18px rgba(0,0,0,.9),0 2px 8px rgba(0,0,0,.8)}
+.gdc-body{padding:.85rem .95rem}
+.gdc-body h3{font-family:var(--fg);font-size:.82rem;font-weight:700;margin-bottom:.3rem}
+.gdc-body p{color:var(--dim);font-size:.77rem;margin:.28rem 0 .55rem}
 /* CONTENT BLOCKS */
-.cb{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.8rem 2rem;margin-bottom:1.3rem;transition:all .3s}
+.cb{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:1.7rem 1.9rem;margin-bottom:1.2rem;transition:all .3s}
 .cb:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
-.cb h2{font-family:var(--fg);font-size:1.2rem;font-weight:700;color:var(--cyan);margin-bottom:.85rem}
-.cb h3{font-size:.9rem;font-weight:700;color:var(--mag);margin:.65rem 0 .38rem}
-.cb p{color:var(--dim);font-size:.88rem;line-height:1.75;margin-bottom:.55rem}
-.cb ul,.cb ol{color:var(--dim);font-size:.88rem;padding-left:1.3rem;line-height:1.85}
-.cb li{margin-bottom:.32rem}.cb strong{color:var(--white)}
-.cb code{background:rgba(0,245,255,.1);color:var(--cyan);padding:.1rem .38rem;border-radius:4px;font-family:monospace;font-size:.85rem}
-.ctbl{width:100%;border-collapse:collapse;margin-top:.75rem}
-.ctbl th{background:rgba(0,245,255,.1);color:var(--cyan);font-family:var(--fg);font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.6rem .85rem;text-align:left;border-bottom:1px solid rgba(0,245,255,.17)}
-.ctbl td{padding:.58rem .85rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--dim);font-size:.85rem;vertical-align:top}
+.cb h2{font-family:var(--fg);font-size:1.15rem;font-weight:700;color:var(--cyan);margin-bottom:.8rem}
+.cb h3{font-size:.88rem;font-weight:700;color:var(--mag);margin:.6rem 0 .35rem}
+.cb p{color:var(--dim);font-size:.87rem;line-height:1.75;margin-bottom:.52rem}
+.cb ul,.cb ol{color:var(--dim);font-size:.87rem;padding-left:1.25rem;line-height:1.85}
+.cb li{margin-bottom:.3rem}.cb strong{color:var(--white)}
+.cb code{background:rgba(0,245,255,.1);color:var(--cyan);padding:.1rem .38rem;border-radius:4px;font-family:monospace;font-size:.84rem}
+.ctbl{width:100%;border-collapse:collapse;margin-top:.7rem;font-size:.82rem}
+.ctbl th{background:rgba(0,245,255,.1);color:var(--cyan);font-family:var(--fg);font-size:.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:.58rem .82rem;text-align:left;border-bottom:1px solid rgba(0,245,255,.17)}
+.ctbl td{padding:.55rem .82rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--dim);vertical-align:top}
 .ctbl td:first-child{color:var(--white);font-weight:600;font-family:monospace}
 .ctbl tr:hover td{background:rgba(0,245,255,.04)}
-
 /* INFO GRID */
-.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem;margin-bottom:1.8rem}
-.ic{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.3rem;text-align:center;transition:all .3s}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:.95rem;margin-bottom:1.7rem}
+.ic{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:1.25rem;text-align:center;transition:all .3s}
 .ic:hover{transform:translateY(-4px);border-color:rgba(0,245,255,.35);box-shadow:var(--shadow)}
-.ic .ico{font-size:1.9rem;margin-bottom:.55rem}
-.ic h3{font-family:var(--fg);font-size:.82rem;font-weight:700;color:var(--cyan);margin-bottom:.35rem}
-.ic p{color:var(--dim);font-size:.82rem}
-
-/* PAGE HERO */
-.phero{padding:6.5rem 1.5rem 2.5rem;text-align:center;background:radial-gradient(ellipse at top,rgba(139,92,246,.1),transparent 55%);position:relative;z-index:2}
-.phero h1{font-family:var(--fg);font-size:clamp(1.8rem,4.5vw,3rem);font-weight:900;margin-bottom:.65rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.phero p{color:var(--dim);font-size:1rem;max-width:540px;margin:0 auto}
-
+.ic .ico{font-size:1.8rem;margin-bottom:.5rem}
+.ic h3{font-family:var(--fg);font-size:.8rem;font-weight:700;color:var(--cyan);margin-bottom:.32rem}
+.ic p{color:var(--dim);font-size:.8rem}
+/* PHERO */
+.phero{padding:6.2rem 1.4rem 2.3rem;text-align:center;background:radial-gradient(ellipse at top,rgba(139,92,246,.1),transparent 55%);position:relative;z-index:2}
+.phero h1{font-family:var(--fg);font-size:clamp(1.7rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.phero p{color:var(--dim);font-size:.97rem;max-width:520px;margin:0 auto}
 /* FILTER */
-.filter-top{position:sticky;top:54px;z-index:200;background:rgba(6,6,15,.96);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);padding:.85rem 1.5rem}
-.fw{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:.7rem}
-.s-inp{width:100%;background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.2);border-radius:12px;padding:.65rem 1rem;color:var(--white);font-size:.9rem;font-family:var(--fb);outline:none;transition:border-color .3s}
-.s-inp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,245,255,.08)}
-.s-inp::placeholder{color:var(--dim)}
-.filter-row{display:flex;gap:.7rem;flex-wrap:wrap}
-.f-sel{background:rgba(14,14,30,.95);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.5rem .85rem;color:var(--white);font-family:var(--fb);font-size:.85rem;outline:none;cursor:pointer;transition:border-color .3s;flex:1;min-width:130px}
-.f-sel:focus{border-color:var(--cyan)}
-.f-sel option{background:#0a0a1a}
-.g-count{font-size:.82rem;color:var(--dim);margin-bottom:.9rem}
-.pagi{display:flex;justify-content:center;gap:.35rem;margin-top:2.2rem;flex-wrap:wrap}
-.pagi button{background:rgba(0,245,255,.07);border:1px solid rgba(255,255,255,.08);color:var(--white);padding:.42rem .82rem;border-radius:8px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.82rem;transition:all .2s;min-width:36px}
+.ftop{position:sticky;top:52px;z-index:200;background:rgba(6,6,15,.97);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);padding:.8rem 1.4rem}
+.fw{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:.65rem}
+.sinp{width:100%;background:rgba(0,245,255,.06);border:1px solid rgba(0,245,255,.2);border-radius:11px;padding:.62rem .95rem;color:var(--white);font-size:.88rem;font-family:var(--fb);outline:none;transition:border-color .3s}
+.sinp:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,245,255,.08)}
+.sinp::placeholder{color:var(--dim)}
+.frow{display:flex;gap:.62rem;flex-wrap:wrap}
+.fsel{background:rgba(14,14,30,.95);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:.48rem .82rem;color:var(--white);font-family:var(--fb);font-size:.84rem;outline:none;cursor:pointer;flex:1;min-width:120px}
+.fsel:focus{border-color:var(--cyan)}
+.fsel option{background:#0a0a1a}
+.gcnt{font-size:.8rem;color:var(--dim);margin-bottom:.85rem}
+.pagi{display:flex;justify-content:center;gap:.32rem;margin-top:2rem;flex-wrap:wrap}
+.pagi button{background:rgba(0,245,255,.07);border:1px solid rgba(255,255,255,.08);color:var(--white);padding:.4rem .78rem;border-radius:7px;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:.8rem;transition:all .2s;min-width:34px}
 .pagi button:hover:not(:disabled){background:rgba(0,245,255,.17);border-color:var(--cyan);color:var(--cyan)}
 .pagi button.on{background:var(--grad);color:#fff;border-color:transparent}
 .pagi button:disabled{opacity:.28;cursor:default}
-
 /* CONTACT */
-.cf{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:2rem;margin-top:1.8rem}
-.fg{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
-.fl{font-family:var(--fg);font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
-.fi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.62rem .9rem;color:var(--white);font-size:.88rem;font-family:var(--fb);outline:none;transition:border-color .3s;width:100%}
+.cf{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:15px;padding:1.9rem;margin-top:1.7rem}
+.fg{display:flex;flex-direction:column;gap:.32rem;margin-bottom:.95rem}
+.fl{font-family:var(--fg);font-size:.63rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+.fi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:.6rem .88rem;color:var(--white);font-size:.87rem;font-family:var(--fb);outline:none;transition:border-color .3s;width:100%}
 .fi:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,245,255,.07)}
 .fi option{background:#0a0a1a}
-textarea.fi{min-height:115px;resize:vertical}
-.priv-toc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.3rem;margin-bottom:1.8rem}
-.priv-toc h3{font-family:var(--fg);font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:.75rem}
-.priv-toc ol{padding-left:1rem}.priv-toc li{margin-bottom:.35rem}
-.priv-toc a{color:var(--dim);font-size:.85rem}.priv-toc a:hover{color:var(--cyan)}
-
-/* CTA */
-.cta{margin:1.8rem 0 2.5rem;border-radius:16px;background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.06),rgba(255,0,170,.06));border:1px solid rgba(0,245,255,.14);padding:2.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
-.cta h2{font-family:var(--fg);font-size:clamp(1.3rem,2.8vw,2rem);font-weight:900;margin-bottom:.32rem}
-.cta p{color:var(--dim);font-size:.9rem}
-
+textarea.fi{min-height:110px;resize:vertical}
 /* ABOUT */
-.about-block{background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.06));border:1px solid rgba(0,245,255,.18);border-radius:16px;padding:2rem;margin-bottom:1.8rem}
-.about-block h2{font-family:var(--fg);font-size:1.2rem;color:var(--cyan);margin-bottom:.85rem}
-.about-block p{color:var(--dim);font-size:.88rem;line-height:1.8;margin-bottom:.6rem}
-
+.ab{background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.06));border:1px solid rgba(0,245,255,.18);border-radius:15px;padding:1.9rem;margin-bottom:1.7rem}
+.ab h2{font-family:var(--fg);font-size:1.15rem;color:var(--cyan);margin-bottom:.82rem}
+.ab p{color:var(--dim);font-size:.87rem;line-height:1.8;margin-bottom:.6rem}
+/* PRIVACY */
+.ptoc{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:1.25rem;margin-bottom:1.7rem}
+.ptoc h3{font-family:var(--fg);font-size:.63rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:.72rem}
+.ptoc ol{padding-left:1rem}.ptoc li{margin-bottom:.33rem}
+.ptoc a{color:var(--dim);font-size:.83rem}.ptoc a:hover{color:var(--cyan)}
+/* CTA */
+.cta{margin:1.7rem 0 2.3rem;border-radius:15px;background:linear-gradient(135deg,rgba(0,245,255,.06),rgba(139,92,246,.06),rgba(255,0,170,.06));border:1px solid rgba(0,245,255,.14);padding:2.3rem 1.9rem;display:flex;align-items:center;justify-content:space-between;gap:1.4rem;flex-wrap:wrap}
+.cta h2{font-family:var(--fg);font-size:clamp(1.2rem,2.5vw,1.9rem);font-weight:900;margin-bottom:.3rem}
+.cta p{color:var(--dim);font-size:.88rem}
 /* FOOTER */
-footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:2;padding:2.5rem 1.5rem 0}
-.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;max-width:1280px;margin:0 auto;padding-bottom:2rem}
-.fb-brand .logo{font-size:1.15rem;display:block;margin-bottom:.65rem}
-.fb-brand p{color:var(--dim);font-size:.82rem;line-height:1.7;max-width:240px}
-.fcol h4{font-family:var(--fg);font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:.85rem}
+footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:2;padding:2.3rem 1.4rem 0}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1.9rem;max-width:1280px;margin:0 auto;padding-bottom:1.9rem}
+.fbl .logo{font-size:1.1rem;display:block;margin-bottom:.6rem}
+.fbl p{color:var(--dim);font-size:.8rem;line-height:1.7;max-width:230px}
+.fcol h4{font-family:var(--fg);font-size:.63rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:.82rem}
 .flinks{list-style:none;padding:0}
-.flinks li{margin-bottom:.38rem}
-.flinks a{color:var(--dim);font-size:.85rem;cursor:pointer;transition:color .2s}
+.flinks li{margin-bottom:.35rem}
+.flinks a{color:var(--dim);font-size:.83rem;cursor:pointer;transition:color .2s}
 .flinks a:hover{color:var(--cyan)}
-.fb-bottom{border-top:1px solid rgba(255,255,255,.06);padding:1.1rem 0;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--dim);flex-wrap:wrap;gap:.6rem}
-.fb-bottom a{color:var(--cyan)}
-.socs{display:flex;gap:.5rem;margin-top:.7rem}
-.soc{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .3s}
+.fbot{border-top:1px solid rgba(255,255,255,.06);padding:1.1rem 0;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.73rem;color:var(--dim);flex-wrap:wrap;gap:.6rem}
+.fbot a{color:var(--cyan)}
+.socs{display:flex;gap:.48rem;margin-top:.65rem}
+.soc{width:33px;height:33px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:all .3s}
 .soc:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 0 12px rgba(0,245,255,.28)}
-
 /* MODAL */
-.modal-bg{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem}
-.modal-bg.open{display:flex}
-.modal{background:#0a0a1e;border:1px solid rgba(0,245,255,.28);border-radius:18px;padding:2rem;max-width:460px;width:100%;text-align:center;box-shadow:0 0 45px rgba(0,245,255,.17)}
-.modal h3{font-family:var(--fg);font-size:1.1rem;color:var(--cyan);margin-bottom:.7rem}
-.modal p{color:var(--dim);font-size:.88rem;margin-bottom:1.2rem;line-height:1.6}
-.m-bar-wrap{width:100%;height:5px;background:rgba(255,255,255,.08);border-radius:5px;overflow:hidden;margin:.7rem 0 1.1rem}
-.m-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--mag));width:0;transition:width .1s;border-radius:5px}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:1024px){.fg-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){
-  .nav-links{display:none}
-  .nav-toggle{display:block}
-  nav .nav-inner{padding:.6rem 1rem}
-  .hero{padding:5.5rem 1rem 3rem}
-  .hero h1{font-size:2rem}
-  .hero p{font-size:.95rem}
-  .fg-grid{grid-template-columns:1fr}
-  .cta{flex-direction:column;text-align:center}
-  .g4{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:repeat(2,1fr)}
-  .g2{grid-template-columns:1fr}
-  .scroll-ind{display:none}
-  .filter-row{flex-direction:column}
-  .f-sel{width:100%;min-width:unset}
-  section{padding:2.5rem 0}
-  .cb{padding:1.3rem 1.2rem}
+.mbg{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.9);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1rem}
+.mbg.open{display:flex}
+.modal{background:#0a0a1e;border:1px solid rgba(0,245,255,.28);border-radius:17px;padding:1.9rem;max-width:440px;width:100%;text-align:center;box-shadow:0 0 45px rgba(0,245,255,.17)}
+.modal h3{font-family:var(--fg);font-size:1.05rem;color:var(--cyan);margin-bottom:.65rem}
+.modal p{color:var(--dim);font-size:.86rem;margin-bottom:1.1rem;line-height:1.6}
+.mbarw{width:100%;height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:.65rem 0 1rem}
+.mbar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--mag));width:0;transition:width .1s;border-radius:4px}
+/* GUIDE HERO IMG */
+.guide-hero-img{width:100%;height:190px;object-fit:cover;border-radius:13px;margin-bottom:1.3rem;display:block}
+/* RESPONSIVE */
+@media(max-width:1100px){.g4{grid-template-columns:repeat(3,1fr)}.fgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:820px){
+  .g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}.nav-toggle{display:block}
+  .hero{padding:5.2rem 1rem 2.8rem}.hero h1{font-size:1.85rem}
+  .fgrid{grid-template-columns:1fr}.cta{flex-direction:column;text-align:center}
+  section{padding:2.2rem 0}
 }
-@media(max-width:520px){
-  .g4{grid-template-columns:1fr 1fr}
-  .g3{grid-template-columns:1fr}
+@media(max-width:540px){
+  .g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr}
   .genre-grid{grid-template-columns:repeat(3,1fr)}
-  .stats-row{gap:.8rem}
-  .stat-box{padding:1.1rem 1.2rem;min-width:110px}
-  .stat-box h2{font-size:1.7rem}
-  .hero h1{font-size:1.8rem}
-  .breaking-banner{flex-direction:column;align-items:flex-start;gap:.7rem}
-  .break-arrow{display:none}
+  .stats-row{gap:.75rem}.sbox{padding:1rem 1.1rem;min-width:110px}.sbox h2{font-size:1.6rem}
+  .hero h1{font-size:1.6rem}.hero p{font-size:.88rem}
+  .scroll-ind{display:none}.bb{flex-direction:column;gap:.6rem}.bba{display:none}
+  .frow{flex-direction:column}
 }
-@media(max-width:380px){
-  .g4{grid-template-columns:1fr}
-  .genre-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-stats{gap:1rem}
-}
+@media(max-width:380px){.g4{grid-template-columns:1fr}.genre-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <canvas id="bgCanvas"></canvas>
-<div class="controllers">
-  <span>🎮</span><span>🕹️</span><span>👾</span><span>🏆</span>
-  <span>⚡</span><span>🎯</span><span>🔫</span><span>🛡️</span>
-</div>
+<div class="controllers"><span>🎮</span><span>🕹️</span><span>👾</span><span>🏆</span><span>⚡</span><span>🎯</span><span>🔫</span><span>🛡️</span></div>
 
-<!-- SCROLL DOTS -->
+<!-- SCROLL INDICATOR -->
 <div class="scroll-ind" id="scrollInd">
-  <div class="sd on" id="sd0"></div><div class="sd" id="sd1"></div>
-  <div class="sd" id="sd2"></div><div class="sd" id="sd3"></div><div class="sd" id="sd4"></div>
-  <div class="scroll-arr" onclick="window.scrollBy({top:window.innerHeight*.8,behavior:'smooth'})">
-    <svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
-  </div>
+  <div class="sd on" id="sd0"></div><div class="sd" id="sd1"></div><div class="sd" id="sd2"></div><div class="sd" id="sd3"></div><div class="sd" id="sd4"></div>
+  <div class="scroll-arr" onclick="window.scrollBy({top:window.innerHeight*.82,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg></div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
     <span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span>
-    <button class="nav-toggle" onclick="document.getElementById('mNav').classList.toggle('open')">☰</button>
+    <button class="nav-toggle" onclick="document.getElementById('mnv').classList.toggle('open')">☰</button>
     <ul class="nav-links">
       <li><a id="nl-home" class="on" onclick="showPage('home')">🏠 Home</a></li>
       <li><a id="nl-games" onclick="showPage('games')">🎮 Games</a></li>
@@ -362,67 +304,52 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);posi
     </ul>
   </div>
 </nav>
-<!-- MOBILE NAV -->
-<div class="mobile-nav" id="mNav">
-  <a onclick="showPage('home');document.getElementById('mNav').classList.remove('open')">🏠 Home</a>
-  <a onclick="showPage('games');document.getElementById('mNav').classList.remove('open')">🎮 Games</a>
-  <a onclick="showPage('mini');document.getElementById('mNav').classList.remove('open')">🕹️ Mini Games</a>
-  <a onclick="showPage('guides');document.getElementById('mNav').classList.remove('open')">📖 Guides</a>
-  <a onclick="showPage('news');document.getElementById('mNav').classList.remove('open')">📰 News</a>
-  <a onclick="showPage('about');document.getElementById('mNav').classList.remove('open')">ℹ️ About</a>
-  <a onclick="showPage('contact');document.getElementById('mNav').classList.remove('open')">📞 Contact</a>
+<div class="mnav" id="mnv">
+  <a onclick="showPage('home');document.getElementById('mnv').classList.remove('open')">🏠 Home</a>
+  <a onclick="showPage('games');document.getElementById('mnv').classList.remove('open')">🎮 Games</a>
+  <a onclick="showPage('mini');document.getElementById('mnv').classList.remove('open')">🕹️ Mini Games</a>
+  <a onclick="showPage('guides');document.getElementById('mnv').classList.remove('open')">📖 Guides</a>
+  <a onclick="showPage('news');document.getElementById('mnv').classList.remove('open')">📰 News</a>
+  <a onclick="showPage('about');document.getElementById('mnv').classList.remove('open')">ℹ️ About</a>
+  <a onclick="showPage('contact');document.getElementById('mnv').classList.remove('open')">📞 Contact</a>
 </div>
 
-<!-- DISCLAIMER BANNER -->
-<div class="disclaimer" id="disclaimerBar">
-  ⚠️ <span>NexusPlay is a gaming hub & guide platform.</span>
-  <strong> FREE games launch directly.</strong>
-  <span> For paid games, we only guide you to the official store page where you can purchase them. We do not sell games directly.</span>
-</div>
+<!-- DISCLAIMER -->
+<div class="disc">⚠️ <span>NexusPlay is a gaming hub & guide platform.</span> <strong>FREE games launch directly in your browser.</strong> <span>For paid games, we only take you to the official store page to purchase. We never sell or host paid games.</span></div>
 
 <!-- ████ HOME PAGE ████ -->
 <div id="page-home" class="page active">
-
-  <!-- BREAKING TOP -->
-  <div style="position:relative;z-index:2;padding:4rem 1.5rem 0;max-width:1280px;margin:0 auto">
-    <div class="breaking-banner" onclick="showPage('news')">
-      <span class="break-label">🔥 BREAKING</span>
-      <div><div class="break-title">GTA 6 Official Release: Fall 2026 — Rockstar Confirms Vice City, Lucia &amp; Jason</div><div class="break-sub">Largest open world ever built · PS5 &amp; Xbox Series X|S · Pre-orders shattered all records</div></div>
-      <span class="break-arrow">→</span>
-    </div>
+  <div style="position:relative;z-index:2;padding:3.2rem 1.4rem 0;max-width:1280px;margin:0 auto">
+    <div class="bb" onclick="showPage('news')"><span class="bbl">🔥 BREAKING</span><div><div class="bbt">GTA 6 Official Release: Fall 2026 — Rockstar Confirms Vice City, Lucia &amp; Jason</div><div class="bbs">Largest open world ever built · PS5 &amp; Xbox Series X|S · Pre-orders shattered all records in 48 hours</div></div><span class="bba">→</span></div>
   </div>
-
   <header class="hero">
     <div class="wrap">
       <span class="hero-badge">🔥 #1 Pro Gaming Hub 2026</span>
       <h1>Level Up Your<br><span class="hl">Gaming Experience</span></h1>
-      <p>Play mini games free, browse 1,200+ titles, master pro guides for Minecraft, GTA 5, EA FC 26, COD &amp; PUBG — plus live GTA 6 coverage.</p>
+      <p>Play 25 free mini games, browse 1,200+ titles, master pro guides for Minecraft, GTA 5, EA FC 26, COD, PUBG, Palworld, Cricket 26 — plus live GTA 6 news.</p>
       <div class="hero-btns">
         <button class="btn btn-p" onclick="showPage('games')">🎮 Browse 1,200+ Games</button>
-        <button class="btn btn-p" onclick="showPage('mini')" style="background:linear-gradient(90deg,#39ff14,#00f5ff);color:#000">🕹️ Play Mini Games</button>
-        <button class="btn btn-o" onclick="showPage('guides')">📖 View Guides</button>
+        <button class="btn btn-g" onclick="showPage('mini')">🕹️ Play Free Mini Games</button>
+        <button class="btn btn-o" onclick="showPage('guides')">📖 Guides</button>
       </div>
       <div class="hero-stats">
         <div class="hs"><div class="hs-n" id="c1">0</div><div class="hs-l">Games</div></div>
         <div class="hs"><div class="hs-n" id="c2">0</div><div class="hs-l">Mini Games</div></div>
-        <div class="hs"><div class="hs-n" id="c3">0</div><div class="hs-l">Commands</div></div>
+        <div class="hs"><div class="hs-n" id="c3">0</div><div class="hs-l">Guides</div></div>
         <div class="hs"><div class="hs-n" id="c4">0</div><div class="hs-l">Gamers</div></div>
       </div>
     </div>
   </header>
-
   <div class="ticker-wrap"><div class="ticker" id="tkr"></div></div>
-
   <div class="wrap"><div class="stats-row">
-    <div class="stat-box"><h2>1,200+</h2><p>Game Catalog</p></div>
-    <div class="stat-box"><h2>15</h2><p>Mini Games</p></div>
-    <div class="stat-box"><h2>150+</h2><p>Commands</p></div>
-    <div class="stat-box"><h2>5M+</h2><p>Gamers</p></div>
+    <div class="sbox"><h2>1,200+</h2><p>Game Catalog</p></div>
+    <div class="sbox"><h2>25</h2><p>Mini Games</p></div>
+    <div class="sbox"><h2>12+</h2><p>Pro Guides</p></div>
+    <div class="sbox"><h2>5M+</h2><p>Gamers</p></div>
   </div></div>
-
-  <!-- GENRE -->
+  <!-- GENRES -->
   <section><div class="wrap">
-    <div class="sec-hdr"><span class="sec-tag">🕹️ Browse by Genre</span><h2><span class="grad-txt">Game Categories</span></h2></div>
+    <div class="sh"><span class="st">🕹️ Browse by Genre</span><h2><span class="gt">Game Categories</span></h2></div>
     <div class="genre-grid">
       <div class="gp" style="--gc:#ff2d78" onclick="openGames('Action')"><div class="gi">⚔️</div>Action</div>
       <div class="gp" style="--gc:#00f5ff" onclick="openGames('FPS')"><div class="gi">🎯</div>FPS</div>
@@ -438,193 +365,217 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);posi
       <div class="gp" style="--gc:#ff006e" onclick="openGames('Fighting')"><div class="gi">🥊</div>Fighting</div>
     </div>
   </div></section>
-
-  <!-- MINI GAMES TEASER -->
+  <!-- MINI GAMES — 2 FULL ROWS of 4 = 8 on home -->
   <section style="background:rgba(57,255,20,.02)"><div class="wrap">
-    <div class="sec-row"><h2><span class="grad-txt">🕹️ Free Mini Games</span></h2><button class="see-all" onclick="showPage('mini')">Play All 15 →</button></div>
-    <div class="grid g4" id="homeMiniv"></div>
+    <div class="sr"><h2><span class="gt">🕹️ Free Mini Games</span></h2><button class="sa" onclick="showPage('mini')">Play All 25 →</button></div>
+    <div class="grid g4" id="homeM"></div>
   </div></section>
-
-  <!-- FEATURED GAMES -->
+  <!-- FEATURED GAMES — 2 FULL ROWS of 4 = 8 on home -->
   <section><div class="wrap">
-    <div class="sec-row"><h2><span class="grad-txt">🔥 Featured Games</span></h2><button class="see-all" onclick="showPage('games')">All 1,200+ →</button></div>
-    <div class="grid g4" id="homeGames"></div>
+    <div class="sr"><h2><span class="gt">🔥 Featured Games</span></h2><button class="sa" onclick="showPage('games')">All 1,200+ →</button></div>
+    <div class="grid g4" id="homeG"></div>
   </div></section>
-
-  <!-- GTA 6 NEWS -->
+  <!-- NEWS -->
   <section style="background:rgba(255,107,0,.02)"><div class="wrap">
-    <div class="sec-hdr"><span class="sec-tag">📰 Breaking News</span><h2><span class="grad-txt">GTA 6 &amp; Gaming Headlines</span></h2></div>
-    <div class="grid g2" id="homeNews"></div>
-    <div style="text-align:center;margin-top:1.6rem"><button class="btn btn-o" onclick="showPage('news')">All Gaming News →</button></div>
+    <div class="sh"><span class="st">📰 Breaking News</span><h2><span class="gt">GTA 6 &amp; Gaming Headlines</span></h2></div>
+    <div class="grid g2" id="homeN"></div>
+    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('news')">All Gaming News →</button></div>
   </div></section>
-
-  <!-- GUIDES -->
+  <!-- GUIDES — 2 full rows = 6 guides -->
   <section><div class="wrap">
-    <div class="sec-hdr"><span class="sec-tag">📖 Pro Guides</span><h2><span class="grad-txt">Game Guides</span></h2></div>
-    <div class="grid g3" id="homeGuides"></div>
+    <div class="sr"><h2><span class="gt">📖 Game Guides</span></h2><button class="sa" onclick="showPage('guides')">All Guides →</button></div>
+    <div class="grid g3" id="homeGD"></div>
   </div></section>
-
-  <div class="wrap"><div class="cta">
-    <div><h2>Ready to <span class="grad-txt">DOMINATE?</span></h2><p>1,200+ games · 15 free mini games · 150+ commands · 80+ guides</p></div>
-    <button class="btn btn-p" onclick="showPage('games')">🎮 START NOW</button>
-  </div></div>
-
-  <footer>
-    <div class="fg-grid">
-      <div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Ultimate pro gaming hub. Games, mini games, guides, commands &amp; live news.</p><div class="socs"><div class="soc">🐦</div><div class="soc">📘</div><div class="soc">📺</div><div class="soc">💬</div></div></div>
-      <div class="fcol"><h4>Explore</h4><ul class="flinks"><li><a onclick="showPage('games')">All Games</a></li><li><a onclick="showPage('mini')">Mini Games</a></li><li><a onclick="showPage('guides')">Guides</a></li><li><a onclick="showPage('news')">News</a></li></ul></div>
-      <div class="fcol"><h4>Guides</h4><ul class="flinks"><li><a onclick="showPage('gMinecraft')">⛏️ Minecraft</a></li><li><a onclick="showPage('gGTA5')">🚗 GTA 5</a></li><li><a onclick="showPage('gFC26')">⚽ EA FC 26</a></li><li><a onclick="showPage('gCOD')">🎯 COD</a></li><li><a onclick="showPage('gPUBG')">🔫 PUBG</a></li></ul></div>
-      <div class="fcol"><h4>Legal</h4><ul class="flinks"><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('contact')">Contact Us</a></li><li><a onclick="showPage('privacy')">Privacy Policy</a></li></ul></div>
-    </div>
-    <div class="fb-bottom"><span>© 2026 NexusPlay. All rights reserved.</span><span><a onclick="showPage('privacy')">Privacy</a> · <a onclick="showPage('contact')">Contact</a></span></div>
-  </footer>
+  <div class="wrap"><div class="cta"><div><h2>Ready to <span class="gt">DOMINATE?</span></h2><p>1,200+ games · 25 free mini games · 12+ pro guides</p></div><button class="btn btn-p" onclick="showPage('games')">🎮 START NOW</button></div></div>
+  <footer><div class="fgrid">
+    <div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Ultimate pro gaming hub. Games, mini games, guides, commands &amp; live news.</p><div class="socs"><div class="soc">🐦</div><div class="soc">📘</div><div class="soc">📺</div><div class="soc">💬</div></div></div>
+    <div class="fcol"><h4>Explore</h4><ul class="flinks"><li><a onclick="showPage('games')">All Games</a></li><li><a onclick="showPage('mini')">Mini Games</a></li><li><a onclick="showPage('guides')">Guides</a></li><li><a onclick="showPage('news')">News</a></li></ul></div>
+    <div class="fcol"><h4>Guides</h4><ul class="flinks"><li><a onclick="showPage('gMinecraft')">⛏️ Minecraft</a></li><li><a onclick="showPage('gGTA5')">🚗 GTA 5</a></li><li><a onclick="showPage('gFC26')">⚽ EA FC 26</a></li><li><a onclick="showPage('gCOD')">🎯 COD</a></li><li><a onclick="showPage('gPUBG')">🔫 PUBG</a></li><li><a onclick="showPage('gPalworld')">🦙 Palworld</a></li><li><a onclick="showPage('gCricket')">🏏 Cricket 26</a></li></ul></div>
+    <div class="fcol"><h4>Legal</h4><ul class="flinks"><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('contact')">Contact Us</a></li><li><a onclick="showPage('privacy')">Privacy Policy</a></li></ul></div>
+  </div><div class="fbot"><span>© 2026 NexusPlay. All rights reserved.</span><span><a onclick="showPage('privacy')">Privacy</a> · <a onclick="showPage('contact')">Contact</a></span></div></footer>
 </div>
 
 <!-- ████ GAMES PAGE ████ -->
 <div id="page-games" class="page">
-  <div class="phero"><h1>🎮 Game Library</h1><p>1,200+ games. <strong style="color:var(--green)">FREE</strong> games launch directly. Paid games link to the official store.</p></div>
-  <!-- DISCLAIMER inside page -->
-  <div style="background:rgba(255,230,0,.07);border-top:1.5px solid var(--yellow);border-bottom:1.5px solid var(--orange);padding:.55rem 1.5rem;text-align:center;position:relative;z-index:2;font-size:.82rem;font-weight:700;color:var(--yellow);letter-spacing:.4px">
-    ⚠️ We only guide you to the official store/page where you can purchase or download paid games. We do not sell or host paid games.
-  </div>
-  <div class="filter-top"><div class="fw">
-    <input type="text" class="s-inp" id="srch" placeholder="🔍  Search games..." oninput="applyF()">
-    <div class="filter-row">
-      <select class="f-sel" id="gf" onchange="applyF()"><option value="">All Genres</option><option>Action</option><option>Adventure</option><option>RPG</option><option>FPS</option><option>Racing</option><option>Sports</option><option>Strategy</option><option>Simulation</option><option>Horror</option><option>Fighting</option><option>Puzzle</option><option>Platformer</option><option>MMO</option><option>Battle Royale</option><option>Sandbox</option><option>Stealth</option><option>Survival</option><option>Roguelike</option><option>Indie</option><option>Arcade</option><option>MOBA</option><option>Card</option><option>Rhythm</option><option>Tactical</option></select>
-      <select class="f-sel" id="pf" onchange="applyF()"><option value="">All Platforms</option><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Nintendo Switch</option><option>Mobile</option><option>Cross-Platform</option></select>
-      <select class="f-sel" id="ff" onchange="applyF()"><option value="">Free &amp; Paid</option><option value="free">Free Only</option><option value="paid">Paid Only</option></select>
+  <div class="phero"><h1>🎮 Game Library</h1><p>1,200+ games. <strong style="color:var(--green)">FREE</strong> games play directly. Paid games link to official store.</p></div>
+  <div style="background:rgba(255,230,0,.07);border-top:1.5px solid var(--yellow);border-bottom:1.5px solid var(--orange);padding:.5rem 1.4rem;text-align:center;position:relative;z-index:2;font-size:.78rem;font-weight:700;color:var(--yellow)">⚠️ We only take you to the official store to purchase paid games. NexusPlay never sells or hosts paid games.</div>
+  <div class="ftop"><div class="fw">
+    <input type="text" class="sinp" id="srch" placeholder="🔍  Search games..." oninput="applyF()">
+    <div class="frow">
+      <select class="fsel" id="gf" onchange="applyF()"><option value="">All Genres</option><option>Action</option><option>Adventure</option><option>RPG</option><option>FPS</option><option>Racing</option><option>Sports</option><option>Strategy</option><option>Simulation</option><option>Horror</option><option>Fighting</option><option>Puzzle</option><option>Platformer</option><option>MMO</option><option>Battle Royale</option><option>Sandbox</option><option>Stealth</option><option>Survival</option><option>Roguelike</option><option>Indie</option><option>Arcade</option><option>MOBA</option><option>Card</option><option>Rhythm</option><option>Tactical</option></select>
+      <select class="fsel" id="pf" onchange="applyF()"><option value="">All Platforms</option><option>PC</option><option>PlayStation</option><option>Xbox</option><option>Nintendo Switch</option><option>Mobile</option><option>Cross-Platform</option></select>
+      <select class="fsel" id="ff" onchange="applyF()"><option value="">Free &amp; Paid</option><option value="free">Free Only</option><option value="paid">Paid Only</option></select>
     </div>
   </div></div>
-  <div class="wrap" style="padding-top:1.4rem;padding-bottom:5rem">
-    <div class="g-count" id="gCount">Loading...</div>
-    <div class="grid g4" id="gGrid"></div>
+  <div class="wrap" style="padding-top:1.3rem;padding-bottom:5rem">
+    <div class="gcnt" id="gcnt">Loading...</div>
+    <div class="grid g4" id="ggrid"></div>
     <div class="pagi" id="pagi"></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>1,200+ games catalog.</p></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('mini')">Mini Games</a></li><li><a onclick="showPage('guides')">Guides</a></li></ul></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>1,200+ games catalog.</p></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('mini')">Mini Games</a></li><li><a onclick="showPage('guides')">Guides</a></li></ul></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
 <!-- ████ MINI GAMES PAGE ████ -->
 <div id="page-mini" class="page">
-  <div class="phero"><h1>🕹️ Free Mini Games</h1><p>Real browser games — click and play instantly, no download, 100% free!</p></div>
-  <div style="background:rgba(57,255,20,.06);border-top:1.5px solid var(--green);border-bottom:1.5px solid var(--green);padding:.55rem 1.5rem;text-align:center;position:relative;z-index:2;font-size:.82rem;font-weight:700;color:var(--green)">
-    ✅ All mini games below are 100% FREE to play directly in your browser — no purchase, no download needed.
-  </div>
-  <div class="wrap" style="padding-top:2rem;padding-bottom:5rem">
-    <div class="grid g4" id="miniGrid"></div>
-  </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Free browser mini games.</p></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('games')">Game Catalog</a></li></ul></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <div class="phero"><h1>🕹️ Free Mini Games</h1><p>25 real browser games — click and play instantly. 100% free, no download, no account!</p></div>
+  <div style="background:rgba(57,255,20,.06);border-top:1.5px solid var(--green);border-bottom:1.5px solid var(--green);padding:.5rem 1.4rem;text-align:center;position:relative;z-index:2;font-size:.8rem;font-weight:700;color:var(--green)">✅ All games below are 100% FREE — play directly in your browser right now!</div>
+  <div class="wrap" style="padding-top:1.8rem;padding-bottom:5rem"><div class="grid g4" id="miniGrid"></div></div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Free browser mini games.</p></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('games')">Game Catalog</a></li></ul></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
-<!-- ████ GUIDES PAGE ████ -->
+<!-- ████ GUIDES HUB ████ -->
 <div id="page-guides" class="page">
-  <div class="phero"><h1>📖 Game Guides Hub</h1><p>Pro commands, cheat codes, tutorials &amp; competitive strategies.</p></div>
+  <div class="phero"><h1>📖 Game Guides Hub</h1><p>Pro commands, cheat codes, tutorials &amp; competitive strategies for all major games.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div class="grid g3">
-      <div class="gdc" onclick="showPage('gMinecraft')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#4ade80,#14532d)"><img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Vanilla_KeyArt_1280x720.jpg" alt="Minecraft" onerror="this.style.display='none'"><span>⛏️ MINECRAFT</span></div><div class="gdc-body"><h3>Minecraft Complete Guide</h3><p>Commands, enchantments, redstone &amp; survival tutorials.</p><span class="tag tg">25+ Commands</span></div></div>
-      <div class="gdc" onclick="showPage('gGTA5')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#f97316,#991b1b)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA 5" onerror="this.style.display='none'"><span>🚗 GTA 5</span></div><div class="gdc-body"><h3>GTA 5 &amp; Online Guide</h3><p>Cheat codes, heist guides &amp; money methods.</p><span class="tag to">Cheat Codes</span></div></div>
-      <div class="gdc" onclick="showPage('gFC26')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#3b82f6,#1e3a8a)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" alt="EA FC 26" onerror="this.style.display='none'"><span>⚽ FC 26</span></div><div class="gdc-body"><h3>EA FC 26 Ultimate Guide</h3><p>FUT trading, skill moves &amp; best formations.</p><span class="tag tc">FUT Guide</span></div></div>
-      <div class="gdc" onclick="showPage('gCOD')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#ef4444,#450a0a)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" alt="COD" onerror="this.style.display='none'"><span>🎯 COD</span></div><div class="gdc-body"><h3>Call of Duty Pro Guide</h3><p>Meta loadouts, ranked strategies &amp; movement tech.</p><span class="tag tm">Loadouts</span></div></div>
-      <div class="gdc" onclick="showPage('gPUBG')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#eab308,#713f12)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" alt="PUBG" onerror="this.style.display='none'"><span>🔫 PUBG</span></div><div class="gdc-body"><h3>PUBG Battle Royale Guide</h3><p>Drop spots, weapon mastery &amp; ranked tactics.</p><span class="tag to">BR Tips</span></div></div>
-      <div class="gdc"><div class="gdc-thumb" style="background:linear-gradient(90deg,#00f5ff,#ff00aa,#8b5cf6)"><span>📚 MORE SOON</span></div><div class="gdc-body"><h3>More Guides Coming</h3><p>Fortnite, Valorant, Elden Ring &amp; 40+ more guides.</p><span class="tag tp">Coming Soon</span></div></div>
-    </div>
+    <div class="grid g3" id="guidesGrid"></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Pro gaming guides.</p></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span><p>Pro gaming guides.</p></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
-<!-- GUIDE: MINECRAFT -->
+<!-- INDIVIDUAL GUIDE PAGES -->
 <div id="page-gMinecraft" class="page">
   <div class="phero"><h1>⛏️ Minecraft Guide</h1><p>Commands, enchantments, redstone tutorials, survival tips &amp; creative building.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div style="border-radius:14px;overflow:hidden;margin-bottom:1.5rem;height:200px"><img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Vanilla_KeyArt_1280x720.jpg" style="width:100%;height:100%;object-fit:cover" alt="Minecraft" onerror="this.parentElement.style.display='none'"></div>
-    <div class="cb"><h2>Essential Commands</h2><p>Enable cheats in world settings. Open chat with <code>T</code> and type:</p><table class="ctbl"><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td>/gamemode creative</td><td>Switch to Creative mode</td></tr><tr><td>/gamemode survival</td><td>Switch to Survival mode</td></tr><tr><td>/time set day</td><td>Set time to day</td></tr><tr><td>/weather clear</td><td>Clear weather</td></tr><tr><td>/give @p diamond 64</td><td>Give yourself 64 diamonds</td></tr><tr><td>/tp @p ~ ~10 ~</td><td>Teleport 10 blocks up</td></tr><tr><td>/effect give @p speed 999 2</td><td>Speed II for 999 seconds</td></tr><tr><td>/locate structure stronghold</td><td>Find nearest stronghold</td></tr><tr><td>/kill @e[type=!player]</td><td>Remove all entities</td></tr><tr><td>/setworldspawn</td><td>Set world spawn here</td></tr></tbody></table></div>
-    <div class="cb"><h2>First Night Survival</h2><ol><li><strong>Punch trees</strong> — 16+ oak logs</li><li><strong>Craft tools</strong> — crafting table, pickaxe, axe, sword</li><li><strong>Find food</strong> — kill animals or find villages</li><li><strong>Mine stone</strong> — upgrade before sunset</li><li><strong>Build shelter</strong> — 5×5 box with a door</li><li><strong>Light it up</strong> — torches prevent mob spawns</li><li><strong>Find iron</strong> — Y-level 16 for best iron ore</li></ol></div>
+    <img class="guide-hero-img" src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Vanilla_KeyArt_1280x720.jpg" alt="Minecraft" onerror="this.style.display='none'">
+    <div class="cb"><h2>Essential Commands</h2><p>Enable cheats in world settings. Press <code>T</code> to open chat:</p><table class="ctbl"><thead><tr><th>Command</th><th>Description</th></tr></thead><tbody><tr><td>/gamemode creative</td><td>Switch to Creative mode</td></tr><tr><td>/gamemode survival</td><td>Switch to Survival mode</td></tr><tr><td>/time set day</td><td>Set time to day</td></tr><tr><td>/weather clear</td><td>Clear weather</td></tr><tr><td>/give @p diamond 64</td><td>Give 64 diamonds</td></tr><tr><td>/tp @p ~ ~10 ~</td><td>Teleport 10 blocks up</td></tr><tr><td>/effect give @p speed 999 2</td><td>Speed II for 999s</td></tr><tr><td>/locate structure stronghold</td><td>Find nearest stronghold</td></tr><tr><td>/kill @e[type=!player]</td><td>Remove all entities</td></tr><tr><td>/setworldspawn</td><td>Set world spawn here</td></tr></tbody></table></div>
+    <div class="cb"><h2>First Night Survival</h2><ol><li><strong>Punch trees</strong> — 16+ oak logs</li><li><strong>Craft tools</strong> — table, pickaxe, axe, sword</li><li><strong>Find food</strong> — kill animals or find villages</li><li><strong>Mine stone</strong> — upgrade before sunset</li><li><strong>Build shelter</strong> — 5×5 with a door</li><li><strong>Light up</strong> — torches prevent mob spawns</li><li><strong>Find iron</strong> — Y-level 16</li></ol></div>
     <div class="cb"><h2>Best Enchantments</h2><ul><li><strong>Sword:</strong> Sharpness V, Looting III, Unbreaking III, Mending</li><li><strong>Pickaxe:</strong> Efficiency V, Fortune III, Unbreaking III, Mending</li><li><strong>Armor:</strong> Protection IV on all pieces</li><li><strong>Bow:</strong> Power V, Infinity, Flame</li></ul></div>
-    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
-
-<!-- GUIDE: GTA 5 -->
 <div id="page-gGTA5" class="page">
   <div class="phero"><h1>🚗 GTA 5 Guide</h1><p>Cheat codes, heist walkthroughs, money methods &amp; GTA Online strategies.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div style="border-radius:14px;overflow:hidden;margin-bottom:1.5rem;height:200px"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" style="width:100%;height:100%;object-fit:cover" alt="GTA 5" onerror="this.parentElement.style.display='none'"></div>
-    <div class="cb"><h2>PC Cheat Codes</h2><p>Press <code>~</code> to open console. Cheats disable achievements.</p><table class="ctbl"><thead><tr><th>Code</th><th>Effect</th></tr></thead><tbody><tr><td>TOOLUP</td><td>All weapons</td></tr><tr><td>PAINKILLER</td><td>Invincibility 5 min</td></tr><tr><td>SKYFALL</td><td>Spawn in the sky</td></tr><tr><td>MAKEITRAIN</td><td>Change weather</td></tr><tr><td>DEADEYE</td><td>Slow-motion aiming</td></tr><tr><td>LOWER</td><td>Decrease wanted level</td></tr><tr><td>HIGHER</td><td>Increase wanted level</td></tr><tr><td>FUGITIVE</td><td>Max stamina</td></tr><tr><td>SNOWDAY</td><td>Slippery vehicles</td></tr></tbody></table></div>
-    <div class="cb"><h2>Cayo Perico Solo Elite</h2><ol><li>Scout island via reconnaissance mission</li><li>Drainage Pipe entry + Main Dock escape</li><li>Take out bolt cutters guard first</li><li>Grappling hook to enter silently</li><li>Primary target + secondary vault loot</li><li>Escape via main dock</li><li><strong>Elite:</strong> Under 14 mins, no damage, all loot</li></ol></div>
-    <div class="cb"><h2>Online Money Tips</h2><ul><li><strong>Cayo Perico:</strong> ~$1.3M solo</li><li><strong>Diamond Casino:</strong> ~$2.1M with crew</li><li><strong>Agency Contracts:</strong> $85K+ quick missions</li><li><strong>Import/Export:</strong> Steady vehicle income</li></ul></div>
-    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA 5" onerror="this.style.display='none'">
+    <div class="cb"><h2>PC Cheat Codes</h2><p>Press <code>~</code> to open console. Warning: cheats disable achievements.</p><table class="ctbl"><thead><tr><th>Code</th><th>Effect</th></tr></thead><tbody><tr><td>TOOLUP</td><td>All weapons + ammo</td></tr><tr><td>PAINKILLER</td><td>Invincibility 5 min</td></tr><tr><td>SKYFALL</td><td>Spawn in the sky</td></tr><tr><td>MAKEITRAIN</td><td>Change weather</td></tr><tr><td>DEADEYE</td><td>Slow-motion aiming</td></tr><tr><td>LOWER</td><td>Decrease wanted level</td></tr><tr><td>HIGHER</td><td>Increase wanted level</td></tr><tr><td>FUGITIVE</td><td>Max stamina</td></tr><tr><td>SNOWDAY</td><td>Slippery vehicles</td></tr><tr><td>TURTLE</td><td>Recharge special ability</td></tr></tbody></table></div>
+    <div class="cb"><h2>Cayo Perico Heist — Solo Elite</h2><ol><li>Scout island via reconnaissance mission</li><li>Drainage Pipe entry + Main Dock escape</li><li>Take out bolt cutters guard first</li><li>Grappling hook to enter compound silently</li><li>Grab primary target + secondary vault loot</li><li>Escape via main dock — sub or fast boat</li><li><strong>Elite:</strong> Under 14 min, no damage, all loot</li></ol></div>
+    <div class="cb"><h2>GTA Online Money Tips</h2><ul><li><strong>Cayo Perico:</strong> ~$1.3M solo per run</li><li><strong>Diamond Casino:</strong> ~$2.1M with crew</li><li><strong>Agency Contracts:</strong> $85K+ Dr. Dre missions</li><li><strong>Import/Export:</strong> Steady vehicle income</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
-
-<!-- GUIDE: FC26 -->
 <div id="page-gFC26" class="page">
   <div class="phero"><h1>⚽ EA FC 26 Guide</h1><p>FUT trading, skill moves, best formations &amp; career mode strategies.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div style="border-radius:14px;overflow:hidden;margin-bottom:1.5rem;height:200px"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" style="width:100%;height:100%;object-fit:cover" alt="EA FC 26" onerror="this.parentElement.style.display='none'"></div>
-    <div class="cb"><h2>Best Formations</h2><table class="ctbl"><thead><tr><th>Formation</th><th>Style</th><th>Key Tip</th></tr></thead><tbody><tr><td>4-2-3-1</td><td>Possession</td><td>Narrow CAM, wide fullbacks</td></tr><tr><td>4-3-2-1</td><td>Attacking</td><td>Central CAM playmaker</td></tr><tr><td>4-4-2</td><td>Balanced</td><td>Target man + pace ST</td></tr><tr><td>3-5-2</td><td>Wide Play</td><td>High stamina wingbacks</td></tr></tbody></table></div>
-    <div class="cb"><h2>Skill Moves</h2><table class="ctbl"><thead><tr><th>Skill</th><th>Input</th><th>Use</th></tr></thead><tbody><tr><td>Ball Roll</td><td>⭐ + ← / →</td><td>Beat defenders</td></tr><tr><td>Step Over</td><td>⭐ + → then ←</td><td>Create angles</td></tr><tr><td>Drag Back</td><td>⭐ + ↓</td><td>Reset direction</td></tr><tr><td>Fake Shot</td><td>◯ then ✕</td><td>Freeze defenders</td></tr></tbody></table></div>
-    <div class="cb"><h2>FUT Trading Tips</h2><ul><li><strong>Bronze Pack Method:</strong> Open bronze packs, sell everything</li><li><strong>Mass Bidding:</strong> Bid 150-300 coins below market value</li><li><strong>Meta Investments:</strong> Buy players during TOTW drops</li></ul></div>
-    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" alt="EA FC 26" onerror="this.style.display='none'">
+    <div class="cb"><h2>Best Formations</h2><table class="ctbl"><thead><tr><th>Formation</th><th>Style</th><th>Key Tip</th></tr></thead><tbody><tr><td>4-2-3-1</td><td>Possession</td><td>Narrow CAM, wide fullbacks</td></tr><tr><td>4-3-2-1</td><td>Attacking</td><td>Central CAM as playmaker</td></tr><tr><td>4-4-2</td><td>Balanced</td><td>Target man + pace ST</td></tr><tr><td>3-5-2</td><td>Wide Play</td><td>High stamina wingbacks</td></tr></tbody></table></div>
+    <div class="cb"><h2>FUT Trading Tips</h2><ul><li><strong>Bronze Packs:</strong> Sell everything for steady profit</li><li><strong>Mass Bidding:</strong> 150-300 coins below market value</li><li><strong>Meta Investments:</strong> Buy during TOTW price dips</li><li><strong>SBC Solutions:</strong> Complete during promo weeks</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
-
-<!-- GUIDE: COD -->
 <div id="page-gCOD" class="page">
   <div class="phero"><h1>🎯 COD Pro Guide</h1><p>Meta loadouts, ranked strategies, movement tech &amp; map control.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div style="border-radius:14px;overflow:hidden;margin-bottom:1.5rem;height:200px"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" style="width:100%;height:100%;object-fit:cover" alt="COD" onerror="this.parentElement.style.display='none'"></div>
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" alt="COD" onerror="this.style.display='none'">
     <div class="cb"><h2>Meta Loadout — Assault</h2><table class="ctbl"><thead><tr><th>Slot</th><th>Pick</th></tr></thead><tbody><tr><td>Primary</td><td>XM4 — Compensator, Long Barrel, 40 Round Mag</td></tr><tr><td>Perk 1</td><td>Flak Jacket</td></tr><tr><td>Perk 2</td><td>Tactical Mask</td></tr><tr><td>Perk 3</td><td>G.O.A.T. Gloves</td></tr><tr><td>Lethal</td><td>Frag Grenade</td></tr><tr><td>Tactical</td><td>Stun or Smoke</td></tr></tbody></table></div>
-    <div class="cb"><h2>Movement Tech</h2><ul><li><strong>Slide Cancel:</strong> Sprint → Slide → Jump → ADS</li><li><strong>Drop Shot:</strong> Prone mid-gunfight</li><li><strong>Jump Peek:</strong> Quick jump around corners</li><li><strong>Strafe:</strong> Move left-right while firing</li></ul></div>
-    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+    <div class="cb"><h2>Movement Tech</h2><ul><li><strong>Slide Cancel:</strong> Sprint → Slide → Jump → ADS</li><li><strong>Drop Shot:</strong> Go prone mid-gunfight</li><li><strong>Jump Peek:</strong> Quick jump around corners</li><li><strong>Strafe:</strong> Move left-right while firing</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
-
-<!-- GUIDE: PUBG -->
 <div id="page-gPUBG" class="page">
   <div class="phero"><h1>🔫 PUBG Guide</h1><p>Drop locations, weapons, squad tactics &amp; ranked climbing.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div style="border-radius:14px;overflow:hidden;margin-bottom:1.5rem;height:200px"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" style="width:100%;height:100%;object-fit:cover" alt="PUBG" onerror="this.parentElement.style.display='none'"></div>
-    <div class="cb"><h2>Best Drop Spots</h2><table class="ctbl"><thead><tr><th>Location</th><th>Loot</th><th>Risk</th></tr></thead><tbody><tr><td>Pochinki</td><td>High</td><td>Very High</td></tr><tr><td>Georgopol</td><td>Very High</td><td>High</td></tr><tr><td>Prison</td><td>Medium</td><td>Medium</td></tr><tr><td>Hospital</td><td>Medium</td><td>Low-Med</td></tr><tr><td>Stalber</td><td>Low</td><td>Low</td></tr></tbody></table></div>
-    <div class="cb"><h2>S-Tier Weapons</h2><ul><li><strong>BERYL M762</strong> — Highest DPS AR</li><li><strong>AWM</strong> — One-shot headshot through L3 helmet</li><li><strong>MK14 Auto</strong> — Melts at any range</li><li><strong>M416</strong> — Best all-round AR, low recoil</li></ul></div>
-    <div class="cb"><h2>Squad Tactics</h2><ul><li>Assign IGL, fragger, support &amp; scout roles</li><li>Move early to next circle edge</li><li>Always smoke before reviving</li><li>Focus fire — one enemy at a time</li></ul></div>
-    <div style="text-align:center;margin-top:1.5rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" alt="PUBG" onerror="this.style.display='none'">
+    <div class="cb"><h2>Best Drop Spots — Erangel</h2><table class="ctbl"><thead><tr><th>Location</th><th>Loot</th><th>Risk</th></tr></thead><tbody><tr><td>Pochinki</td><td>High</td><td>Very High</td></tr><tr><td>Georgopol</td><td>Very High</td><td>High</td></tr><tr><td>Prison</td><td>Medium</td><td>Medium</td></tr><tr><td>Hospital</td><td>Medium</td><td>Low-Med</td></tr><tr><td>Stalber</td><td>Low</td><td>Low</td></tr></tbody></table></div>
+    <div class="cb"><h2>S-Tier Weapons</h2><ul><li><strong>BERYL M762</strong> — Highest DPS AR</li><li><strong>AWM</strong> — One-shot headshot L3 helmet</li><li><strong>MK14 Auto</strong> — Melts at any range</li><li><strong>M416</strong> — Best all-round AR</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
+</div>
+<!-- PALWORLD GUIDE -->
+<div id="page-gPalworld" class="page">
+  <div class="phero"><h1>🦙 Palworld Guide</h1><p>Pal catching strategies, base building, breeding, combat tips &amp; server multiplayer.</p></div>
+  <div class="wrap" style="padding-bottom:5rem">
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg" alt="Palworld" onerror="this.style.display='none'">
+    <div class="cb"><h2>Pal Catching Tips</h2><ul><li><strong>Weaken first:</strong> Get Pal to low HP (red) before throwing a Pal Sphere</li><li><strong>At night:</strong> Pals are drowsy and easier to catch</li><li><strong>Higher tier spheres:</strong> Mega / Giga / Hyper spheres dramatically improve catch rate</li><li><strong>Status effects:</strong> Sleeping or burned Pals are much easier to catch</li><li><strong>Syndicate Tower:</strong> Defeat boss Pals for rare eggs, not direct catches</li></ul></div>
+    <div class="cb"><h2>Best Starter Pals</h2><table class="ctbl"><thead><tr><th>Pal</th><th>Type</th><th>Why</th></tr></thead><tbody><tr><td>Lamball</td><td>Neutral</td><td>Best early wool/work pal</td></tr><tr><td>Cattiva</td><td>Neutral</td><td>Increases carrying capacity</td></tr><tr><td>Foxparks</td><td>Fire</td><td>Doubles as portable flamethrower</td></tr><tr><td>Pengullet</td><td>Ice/Water</td><td>Great early combat + watering</td></tr><tr><td>Lifmunk</td><td>Grass</td><td>Great for planting and shooting</td></tr></tbody></table></div>
+    <div class="cb"><h2>Base Building Tips</h2><ol><li>Build your Palbox on flat ground with room to expand</li><li>Assign Pals to work based on their suitability stars</li><li>Always have Pals assigned to kindling, watering &amp; gathering</li><li>Build a Feed Box early — hungry Pals work slowly</li><li>Hot Springs are essential — rest restores Pal sanity</li><li>Multi-story bases save space on limited flat terrain</li></ol></div>
+    <div class="cb"><h2>Combat &amp; Weapons</h2><ul><li><strong>Early:</strong> Musket + fire arrow combo for boss fights</li><li><strong>Mid:</strong> Assault Rifle with Katakamas for aggressive play</li><li><strong>Pal attacks:</strong> Always active-skill your combat Pal during boss fights</li><li><strong>Passive skills:</strong> Breed Pals with "Legend", "Ferocious", "Brave" traits</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+  </div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
+</div>
+<!-- CRICKET 26 GUIDE -->
+<div id="page-gCricket" class="page">
+  <div class="phero"><h1>🏏 Cricket 26 Guide</h1><p>Batting techniques, bowling strategies, field settings &amp; Career Mode tips.</p></div>
+  <div class="wrap" style="padding-bottom:5rem">
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1851080/header.jpg" alt="Cricket 26" onerror="this.style.display='none'" style="height:190px;object-fit:cover;border-radius:13px;width:100%;display:block;margin-bottom:1.3rem">
+    <div class="cb"><h2>Batting Controls</h2><table class="ctbl"><thead><tr><th>Shot</th><th>Button</th><th>When to Use</th></tr></thead><tbody><tr><td>Drive</td><td>A / X</td><td>Full-length balls outside off-stump</td></tr><tr><td>Cut Shot</td><td>B / Circle</td><td>Short balls outside off-stump</td></tr><tr><td>Pull Shot</td><td>Y / Triangle</td><td>Short balls on leg side</td></tr><tr><td>Sweep</td><td>LB + A</td><td>Spinners bowling full on leg</td></tr><tr><td>Lofted Drive</td><td>Hold A</td><td>Clearing the boundary in powerplay</td></tr><tr><td>Defensive</td><td>X / Square</td><td>Good-length balls on off-stump</td></tr></tbody></table></div>
+    <div class="cb"><h2>Bowling Tips</h2><ul><li><strong>Pace variation:</strong> Use slower balls (hold LT/L2) against aggressive batsmen</li><li><strong>Swing:</strong> Bowl full-length to swing the ball early in a match</li><li><strong>Spinners:</strong> Bowl in the footmarks on day 4-5 in Test matches</li><li><strong>Yorkers:</strong> Aim at the batsman's feet at the death overs</li><li><strong>Bouncers:</strong> Use 1-2 per over to keep batsmen uncomfortable</li></ul></div>
+    <div class="cb"><h2>Career Mode Tips</h2><ol><li>Choose a strong domestic team to get more opportunities early</li><li>Focus on one batting style (aggressive vs defensive) and master it</li><li>Always practice in the nets before big matches to raise confidence</li><li>In T20s, save your best batsmen for the last 5 overs</li><li>Select weather conditions favouring your playing style</li><li>Build fitness by playing all match types — don't skip county games</li></ol></div>
+    <div class="cb"><h2>Best Teams &amp; Players 2026</h2><table class="ctbl"><thead><tr><th>Player</th><th>Team</th><th>Strength</th></tr></thead><tbody><tr><td>Babar Azam</td><td>Pakistan</td><td>Master of all formats</td></tr><tr><td>Virat Kohli</td><td>India</td><td>Chase king, ODI legend</td></tr><tr><td>Ben Stokes</td><td>England</td><td>All-rounder, clutch performer</td></tr><tr><td>Jasprit Bumrah</td><td>India</td><td>Best pace bowler globally</td></tr><tr><td>Shaheen Afridi</td><td>Pakistan</td><td>Lethal swing left-arm pacer</td></tr></tbody></table></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+  </div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
+</div>
+<!-- FORTNITE GUIDE -->
+<div id="page-gFortnite" class="page">
+  <div class="phero"><h1>🪂 Fortnite Guide</h1><p>Building, combat, loadout tips &amp; Chapter 5 strategies.</p></div>
+  <div class="wrap" style="padding-bottom:5rem">
+    <img class="guide-hero-img" src="https://cdn2.unrealengine.com/fortnite-chapter-5-season-3-header-1920x1080-8e8a77c7d57e.jpg" alt="Fortnite" onerror="this.style.display='none'">
+    <div class="cb"><h2>Building Tips</h2><ul><li><strong>90s:</strong> Place floor → ramp → wall → turn → repeat to gain high ground fast</li><li><strong>Box up:</strong> Always box yourself when healing or reloading</li><li><strong>Edit plays:</strong> Edit ramps and walls to peek-shoot then reset</li><li><strong>Resets:</strong> Break opponent's builds while rebuilding your own</li></ul></div>
+    <div class="cb"><h2>Best Loadout 2026</h2><table class="ctbl"><thead><tr><th>Slot</th><th>Weapon</th><th>Use</th></tr></thead><tbody><tr><td>AR</td><td>MK-Alpha AR</td><td>Medium range spray</td></tr><tr><td>Shotgun</td><td>Havoc Pump</td><td>Close range one-shots</td></tr><tr><td>SMG</td><td>Thunder Burst SMG</td><td>Close range aggressive</td></tr><tr><td>Sniper</td><td>Bolt Action Sniper</td><td>Long range pick-offs</td></tr><tr><td>Heal</td><td>Medkit + Shield Potion</td><td>Full heal combo</td></tr></tbody></table></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+  </div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
+</div>
+<!-- ELDEN RING GUIDE -->
+<div id="page-gElden" class="page">
+  <div class="phero"><h1>⚔️ Elden Ring Guide</h1><p>Boss strategies, best builds, rune farming &amp; exploration tips.</p></div>
+  <div class="wrap" style="padding-bottom:5rem">
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="Elden Ring" onerror="this.style.display='none'">
+    <div class="cb"><h2>Beginner Tips</h2><ul><li>Start with Vagabond class — best stats for beginners</li><li>Pick Golden Seed as your keepsake for an extra flask use</li><li>Explore the full Limgrave region before entering Stormveil Castle</li><li>Always upgrade your flasks at Sites of Grace first</li><li>Parrying is optional — most bosses can be beaten with dodge-rolling</li></ul></div>
+    <div class="cb"><h2>Best Early Build — Strength</h2><table class="ctbl"><thead><tr><th>Item</th><th>Where to Get</th></tr></thead><tbody><tr><td>Grafted Blade Greatsword</td><td>Castle Morne</td></tr><tr><td>Bloodhound's Step</td><td>Night Cavalry boss drop</td></tr><tr><td>Bull-Goat Armor</td><td>Volcano Manor</td></tr><tr><td>Erdtree Favor Talisman</td><td>Fringefolk Hero's Grave</td></tr></tbody></table></div>
+    <div class="cb"><h2>Rune Farming Spots</h2><ul><li><strong>Early:</strong> Gatefront Ruins — 700 runes per run, very fast</li><li><strong>Mid:</strong> Mohgwyn Palace birds — 10,000+ per arrow shot</li><li><strong>Late:</strong> Farum Azula beastmen — 30,000+ runes per run</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+  </div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
+</div>
+<!-- VALORANT GUIDE -->
+<div id="page-gValorant" class="page">
+  <div class="phero"><h1>🎯 Valorant Guide</h1><p>Agent tips, ranked climb strategies, aim training &amp; economy management.</p></div>
+  <div class="wrap" style="padding-bottom:5rem">
+    <img class="guide-hero-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547890/header.jpg" alt="Valorant" onerror="this.style.display='none'">
+    <div class="cb"><h2>Best Agents for Ranked</h2><table class="ctbl"><thead><tr><th>Agent</th><th>Role</th><th>Why Pick</th></tr></thead><tbody><tr><td>Jett</td><td>Duelist</td><td>High mobility, ace potential</td></tr><tr><td>Sage</td><td>Sentinel</td><td>Revive, wall, essential every round</td></tr><tr><td>Sova</td><td>Initiator</td><td>Info gathering, drone, recon bolt</td></tr><tr><td>Omen</td><td>Controller</td><td>Best smoke agent, teleport pressure</td></tr><tr><td>Killjoy</td><td>Sentinel</td><td>Best site-holder, alarm bot traps</td></tr></tbody></table></div>
+    <div class="cb"><h2>Economy Tips</h2><ul><li>Never buy alone — always eco or full-buy together as a team</li><li>Save (eco) if you have under 4000 credits after a round loss</li><li>Light buy: Ghost + Spectre + light armor on save rounds</li><li>Full buy: Vandal/Phantom + full armor + utilities</li><li>Don't drop guns to the enemy — sell them off in eco rounds</li></ul></div>
+    <div style="text-align:center;margin-top:1.4rem"><button class="btn btn-o" onclick="showPage('guides')">← Back to Guides</button></div>
+  </div>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
-<!-- ████ NEWS PAGE ████ -->
+<!-- ████ NEWS ████ -->
 <div id="page-news" class="page">
   <div class="phero"><h1>📰 Gaming News</h1><p>Breaking stories, leaks, announcements &amp; everything in gaming.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div class="breaking-banner" style="margin-bottom:1.8rem"><span class="break-label">🔥 BREAKING</span><div><div class="break-title">GTA 6 — Fall 2026. Lucia &amp; Jason. Vice City. Rockstar Official.</div><div class="break-sub">June 12, 2026 · Official Announcement</div></div></div>
-    <div class="cb" style="border-color:rgba(255,107,0,.35)"><h2>Grand Theft Auto VI: Everything We Know</h2><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTAVI_Trailer1_lucia.png/400px-GTAVI_Trailer1_lucia.png" style="width:100%;max-height:220px;object-fit:cover;border-radius:10px;margin-bottom:1rem" alt="GTA 6" onerror="this.style.display='none'"><p>Rockstar Games confirmed GTA VI launches <strong>Fall 2026</strong> on PS5 and Xbox Series X|S.</p><ul><li><strong>Setting:</strong> Vice City &amp; Leonida (fictional Florida)</li><li><strong>Protagonists:</strong> Lucia (first female lead) &amp; Jason</li><li><strong>World:</strong> Largest &amp; most detailed open world Rockstar has built</li><li><strong>Dynamic:</strong> Real-time hurricanes, reactive NPCs, ML physics</li><li><strong>Online:</strong> GTA Online 2.0 launches with single-player</li></ul></div>
+    <div class="bb" style="margin-bottom:1.7rem"><span class="bbl">🔥 BREAKING</span><div><div class="bbt">GTA 6 — Fall 2026. Lucia &amp; Jason. Vice City. Rockstar Official.</div><div class="bbs">June 12, 2026 · Official Announcement</div></div></div>
+    <div class="cb" style="border-color:rgba(255,107,0,.35)"><h2>Grand Theft Auto VI: Everything We Know</h2><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTAVI_Trailer1_lucia.png/400px-GTAVI_Trailer1_lucia.png" style="width:100%;max-height:210px;object-fit:cover;border-radius:10px;margin-bottom:.9rem" alt="GTA 6" onerror="this.style.display='none'"><p>Rockstar confirmed GTA VI launches <strong>Fall 2026</strong> on PS5 &amp; Xbox Series X|S.</p><ul><li><strong>Setting:</strong> Vice City &amp; Leonida (fictional Florida)</li><li><strong>Protagonists:</strong> Lucia (first female lead) &amp; Jason</li><li><strong>World:</strong> Largest open world Rockstar has built</li><li><strong>Dynamic:</strong> Real-time hurricanes, reactive NPCs, ML physics</li><li><strong>Online:</strong> GTA Online 2.0 launches with single-player</li><li><strong>Price:</strong> Standard $69.99 · Ultimate $99.99</li></ul></div>
     <div class="grid g2">
-      <div class="cb"><span class="tag tm" style="display:inline-block;margin-bottom:.7rem">GTA 6</span><h2>Pre-Orders Shatter Records</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:.8rem" alt="GTA" onerror="this.style.display='none'"><div class="nc-date">June 10, 2026</div><p>15M+ pre-orders in 48 hours — eclipsing Cyberpunk 2077, Elden Ring &amp; GTA V combined. Take-Two stock surged 12%.</p></div>
-      <div class="cb"><span class="tag tc" style="display:inline-block;margin-bottom:.7rem">EA FC 26</span><h2>HyperMotion V &amp; Cross-Platform FUT</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:.8rem" alt="FC26" onerror="this.style.display='none'"><div class="nc-date">May 20, 2026</div><p>HyperMotion V captures 180+ pro players. Cross-platform Ultimate Team — PS5, Xbox &amp; PC compete together.</p></div>
-      <div class="cb"><span class="tag tm" style="display:inline-block;margin-bottom:.7rem">COD</span><h2>Black Ops 6 Season 4: Verdansk Reborn</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:.8rem" alt="COD" onerror="this.style.display='none'"><div class="nc-date">May 15, 2026</div><p>Destructible environments, tunnel networks &amp; dynamic gas circle that shifts based on player count.</p></div>
-      <div class="cb"><span class="tag tg" style="display:inline-block;margin-bottom:.7rem">Minecraft</span><h2>1.22 "Garden Awakens" Update</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg" style="width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:.8rem" alt="Minecraft" onerror="this.style.display='none'"><div class="nc-date">May 8, 2026</div><p>New biomes, glowing flora, Gardener Villager. Cross-save between all platforms via Microsoft account.</p></div>
+      <div class="cb"><span class="tag tm" style="display:inline-block;margin-bottom:.65rem">GTA 6</span><h2>Pre-Orders Shatter Records</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" style="width:100%;height:115px;object-fit:cover;border-radius:8px;margin-bottom:.75rem" alt="GTA" onerror="this.style.display='none'"><div class="nc-date">June 10, 2026</div><p>15M+ pre-orders in 48 hours. Take-Two stock surged 12%. Fastest-selling entertainment product ever.</p></div>
+      <div class="cb"><span class="tag tc" style="display:inline-block;margin-bottom:.65rem">EA FC 26</span><h2>HyperMotion V &amp; Cross-Platform FUT</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" style="width:100%;height:115px;object-fit:cover;border-radius:8px;margin-bottom:.75rem" alt="FC26" onerror="this.style.display='none'"><div class="nc-date">May 20, 2026</div><p>HyperMotion V captures 180+ pros. Cross-platform Ultimate Team — PS5, Xbox &amp; PC compete together.</p></div>
+      <div class="cb"><span class="tag tm" style="display:inline-block;margin-bottom:.65rem">COD</span><h2>Black Ops 6 Season 4: Verdansk Reborn</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" style="width:100%;height:115px;object-fit:cover;border-radius:8px;margin-bottom:.75rem" alt="COD" onerror="this.style.display='none'"><div class="nc-date">May 15, 2026</div><p>Destructible environments, tunnel networks &amp; dynamic gas circle based on player count.</p></div>
+      <div class="cb"><span class="tag tg" style="display:inline-block;margin-bottom:.65rem">Minecraft</span><h2>1.22 "Garden Awakens" Update</h2><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg" style="width:100%;height:115px;object-fit:cover;border-radius:8px;margin-bottom:.75rem" alt="Minecraft" onerror="this.style.display='none'"><div class="nc-date">May 8, 2026</div><p>New biomes, glowing flora, Gardener Villager. Cross-save between all platforms via Microsoft account.</p></div>
     </div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('guides')">Guides</a></li></ul></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('guides')">Guides</a></li></ul></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
 <!-- ████ ABOUT ████ -->
 <div id="page-about" class="page">
   <div class="phero"><h1>About NexusPlay</h1><p>Built by gamers, for gamers.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div class="about-block"><h2>Our Mission</h2><p>NexusPlay is the most comprehensive gaming hub on the web — 1,200+ games, free mini games, expert guides &amp; live news all in one place.</p><p>Whether you're grinding PUBG, building in Minecraft, planning a GTA heist, or counting down to GTA 6 — NexusPlay has you covered.</p></div>
+    <div class="ab"><h2>Our Mission</h2><p>NexusPlay is the most comprehensive gaming hub on the web — 1,200+ games, 25 free mini games, expert guides &amp; live news all in one place.</p><p>Whether you're grinding PUBG, building in Minecraft, playing Palworld, planning a GTA heist, or counting down to GTA 6 — NexusPlay has you covered.</p></div>
     <div class="info-grid">
-      <div class="ic"><div class="ico">🎮</div><h3>1,200+ Games</h3><p>Every genre &amp; platform covered.</p></div>
-      <div class="ic"><div class="ico">🕹️</div><h3>15 Mini Games</h3><p>100% free browser games, no download.</p></div>
-      <div class="ic"><div class="ico">📖</div><h3>Pro Guides</h3><p>Commands, cheats &amp; strategies.</p></div>
-      <div class="ic"><div class="ico">📰</div><h3>Live News</h3><p>GTA 6, EA FC, COD &amp; industry coverage.</p></div>
+      <div class="ic"><div class="ico">🎮</div><h3>1,200+ Games</h3><p>Every genre &amp; platform.</p></div>
+      <div class="ic"><div class="ico">🕹️</div><h3>25 Mini Games</h3><p>100% free browser games.</p></div>
+      <div class="ic"><div class="ico">📖</div><h3>12+ Guides</h3><p>Pro commands &amp; strategies.</p></div>
+      <div class="ic"><div class="ico">📰</div><h3>Live News</h3><p>GTA 6, EA FC &amp; more.</p></div>
     </div>
-    <div class="cb"><h2>Our Disclaimer</h2><p><strong style="color:var(--yellow)">⚠️ Important:</strong> For free games, we launch them directly in your browser or link to the free platform. For paid games, we only redirect you to the official store page (Steam, PlayStation Store, Xbox Store, etc.) where you can purchase them. <strong>NexusPlay does not sell, host, or provide paid games for free.</strong></p></div>
+    <div class="cb"><h2>Disclaimer</h2><p><strong style="color:var(--yellow)">⚠️</strong> For free games we launch them directly. For paid games we only redirect to the official store page. <strong>NexusPlay does not sell, host, or provide paid games for free.</strong></p></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('contact')">Contact</a></li><li><a onclick="showPage('privacy')">Privacy</a></li></ul></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('contact')">Contact</a></li><li><a onclick="showPage('privacy')">Privacy</a></li></ul></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
 <!-- ████ CONTACT ████ -->
@@ -637,7 +588,7 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);posi
       <div class="ic"><div class="ico">🐦</div><h3>Twitter/X</h3><p>@NexusPlayGames</p></div>
     </div>
     <div class="cf">
-      <h2 style="font-family:var(--fg);margin-bottom:1.3rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Send a Message</h2>
+      <h2 style="font-family:var(--fg);margin-bottom:1.2rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Send a Message</h2>
       <div id="cForm">
         <div class="fg"><label class="fl">Your Name</label><input class="fi" type="text" id="cN" placeholder="Player One"></div>
         <div class="fg"><label class="fl">Email</label><input class="fi" type="email" id="cE" placeholder="you@example.com"></div>
@@ -645,39 +596,37 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);posi
         <div class="fg"><label class="fl">Message</label><textarea class="fi" id="cM" placeholder="Tell us..."></textarea></div>
         <button class="btn btn-p" onclick="submitForm()">Send Message 🚀</button>
       </div>
-      <div id="okBox" style="display:none;text-align:center;padding:2rem"><div style="font-size:3rem;margin-bottom:.8rem">✅</div><h3 style="font-family:var(--fg);color:var(--green);margin-bottom:.4rem">Sent!</h3><p style="color:var(--dim);margin-bottom:1.2rem">We'll reply soon.</p><button class="btn btn-o" onclick="resetForm()">Send Another →</button></div>
+      <div id="okBox" style="display:none;text-align:center;padding:2rem"><div style="font-size:3rem;margin-bottom:.7rem">✅</div><h3 style="font-family:var(--fg);color:var(--green);margin-bottom:.38rem">Sent!</h3><p style="color:var(--dim);margin-bottom:1.1rem">We'll reply soon.</p><button class="btn btn-o" onclick="resetForm()">Send Another →</button></div>
     </div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('privacy')">Privacy</a></li></ul></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div><div class="fcol"><h4>Navigate</h4><ul class="flinks"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('privacy')">Privacy</a></li></ul></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
 <!-- ████ PRIVACY ████ -->
 <div id="page-privacy" class="page">
   <div class="phero"><h1>🔒 Privacy Policy</h1><p>Last updated: June 18, 2026.</p></div>
   <div class="wrap" style="padding-bottom:5rem">
-    <div class="priv-toc"><h3>Contents</h3><ol style="padding-left:1rem;color:var(--dim);font-size:.85rem;line-height:2"><li><a href="#p1">Information We Collect</a></li><li><a href="#p2">How We Use It</a></li><li><a href="#p3">Cookies</a></li><li><a href="#p4">Security</a></li><li><a href="#p5">Children</a></li><li><a href="#p6">Your Rights</a></li><li><a href="#p7">Changes</a></li><li><a href="#p8">Contact</a></li></ol></div>
+    <div class="ptoc"><h3>Contents</h3><ol style="padding-left:1rem;color:var(--dim);font-size:.83rem;line-height:2"><li><a href="#p1">Information We Collect</a></li><li><a href="#p2">How We Use It</a></li><li><a href="#p3">Cookies</a></li><li><a href="#p4">Security</a></li><li><a href="#p5">Children</a></li><li><a href="#p6">Your Rights</a></li></ol></div>
     <div class="cb" id="p1"><h2>Information We Collect</h2><ul><li>Contact form submissions (name, email, message)</li><li>Browser type, device, IP, pages visited</li><li>Cookies &amp; tracking technologies</li></ul></div>
-    <div class="cb" id="p2"><h2>How We Use It</h2><ul><li>Provide &amp; improve our platform</li><li>Respond to inquiries</li><li>Detect &amp; prevent issues</li><li>Comply with legal obligations</li></ul><p style="margin-top:.6rem;color:var(--dim)">We do <strong style="color:var(--white)">not</strong> sell your personal data.</p></div>
+    <div class="cb" id="p2"><h2>How We Use It</h2><ul><li>Provide &amp; improve our platform</li><li>Respond to inquiries</li><li>Detect &amp; prevent issues</li></ul><p style="margin-top:.55rem;color:var(--dim)">We do <strong style="color:var(--white)">not</strong> sell your personal data.</p></div>
     <div class="cb" id="p3"><h2>Cookies</h2><p>We use cookies to enhance your experience. Manage them in browser settings.</p></div>
-    <div class="cb" id="p4"><h2>Data Security</h2><p>SSL/TLS encryption in transit, AES-256 at rest, regular audits. No method is 100% secure.</p></div>
+    <div class="cb" id="p4"><h2>Data Security</h2><p>SSL/TLS encryption, AES-256 at rest, regular audits.</p></div>
     <div class="cb" id="p5"><h2>Children's Privacy</h2><p>Not directed at children under 13. Contact us if you believe we have such data.</p></div>
-    <div class="cb" id="p6"><h2>Your Rights</h2><ul><li>Access, correct, or delete your data</li><li>Opt out of marketing</li><li>Withdraw consent</li></ul><p style="margin-top:.6rem;color:var(--dim)">Email: contact@nexusplay.gg</p></div>
-    <div class="cb" id="p7"><h2>Policy Changes</h2><p>We post changes here and notify registered users for significant updates.</p></div>
-    <div class="cb" id="p8"><h2>Contact</h2><p>📧 contact@nexusplay.gg · <a onclick="showPage('contact')" style="cursor:pointer;color:var(--cyan)">Contact Form →</a></p></div>
+    <div class="cb" id="p6"><h2>Your Rights</h2><ul><li>Access, correct, or delete your data</li><li>Opt out of marketing</li></ul><p style="margin-top:.55rem;color:var(--dim)">Email: contact@nexusplay.gg</p></div>
   </div>
-  <footer><div class="fg-grid"><div class="fb-brand"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fb-bottom"><span>© 2026 NexusPlay.</span></div></footer>
+  <footer><div class="fgrid"><div class="fbl"><span class="logo" onclick="showPage('home')">NEXUS<em>PLAY</em></span></div></div><div class="fbot"><span>© 2026 NexusPlay.</span></div></footer>
 </div>
 
-<!-- GAME MODAL -->
-<div class="modal-bg" id="gModal">
+<!-- MODAL -->
+<div class="mbg" id="gModal">
   <div class="modal">
-    <div style="font-size:2.5rem;margin-bottom:.6rem" id="mEmoji">🎮</div>
+    <div style="font-size:2.4rem;margin-bottom:.55rem" id="mEmoji">🎮</div>
     <h3 id="mTitle">Loading...</h3>
-    <div class="m-bar-wrap"><div class="m-bar" id="mBar"></div></div>
+    <div class="mbarw"><div class="mbar" id="mBar"></div></div>
     <p id="mSub">Connecting...</p>
-    <div id="mDisc" style="display:none;background:rgba(255,230,0,.08);border:1px solid rgba(255,230,0,.3);border-radius:10px;padding:.7rem 1rem;font-size:.78rem;color:var(--yellow);margin:.8rem 0;line-height:1.5">⚠️ This is a <strong>paid game</strong>. NexusPlay will take you to the official store page where you can purchase it. We do not provide paid games for free.</div>
-    <div style="display:flex;gap:.7rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap">
-      <button class="btn btn-p" id="mPlayBtn" style="display:none">▶ OPEN GAME</button>
+    <div id="mDisc" style="display:none;background:rgba(255,230,0,.08);border:1px solid rgba(255,230,0,.3);border-radius:9px;padding:.65rem .95rem;font-size:.76rem;color:var(--yellow);margin:.75rem 0;line-height:1.5">⚠️ <strong>Paid game.</strong> We'll take you to the official store where you can purchase it. We never provide paid games for free.</div>
+    <div style="display:flex;gap:.65rem;justify-content:center;margin-top:.75rem;flex-wrap:wrap">
+      <button class="btn btn-p" id="mBtn" style="display:none">▶ OPEN GAME</button>
       <button class="btn btn-o" onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -686,35 +635,35 @@ footer{background:rgba(0,0,0,.4);border-top:1px solid rgba(255,255,255,.06);posi
 <script>
 // ── STARFIELD ──
 (()=>{
-  const c=document.getElementById('bgCanvas'),x=c.getContext('2d');
-  let W,H,S=[];
+  const c=document.getElementById('bgCanvas'),x=c.getContext('2d');let W,H,S=[];
   const R=()=>{W=c.width=innerWidth;H=c.height=innerHeight;S=Array.from({length:180},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.25,vy:Math.random()*.8+.15,tw:Math.random()*6.28,ts:Math.random()*.04+.01,op:Math.random()*.8+.2,col:Math.random()<.12?'0,245,255':Math.random()<.25?'139,92,246':'255,255,255'}))};
   const D=()=>{x.clearRect(0,0,W,H);S.forEach(s=>{s.tw+=s.ts;s.y+=s.vy;if(s.y>H){s.y=-5;s.x=Math.random()*W}const a=s.op*(.55+.45*Math.sin(s.tw));x.beginPath();x.arc(s.x,s.y,s.r,0,6.28);x.fillStyle=`rgba(${s.col},${a})`;if(s.r>1.2){x.shadowBlur=5;x.shadowColor=`rgba(${s.col},.8)`}x.fill();x.shadowBlur=0});requestAnimationFrame(D)};
   window.addEventListener('resize',R);R();D();
 })();
 
 // ── TICKER ──
-(()=>{const items=['⚡ NEXUSPLAY','🎮 1,200+ GAMES','🏆 GTA 6 FALL 2026','🕹️ 15 FREE MINI GAMES','🌍 5M+ GAMERS','⛏️ MINECRAFT COMMANDS','🎯 COD LOADOUTS','🔫 PUBG TIPS','⚽ EA FC 26 FUT','💰 GTA 5 MONEY GUIDE','📰 BREAKING NEWS DAILY','👾 PRO GAMING HUB'];const t=document.getElementById('tkr');if(t)t.innerHTML=[...items,...items].map(i=>`<span class="ti">${i}</span>`).join('')})();
+(()=>{const items=['⚡ NEXUSPLAY','🎮 1,200+ GAMES','🏆 GTA 6 FALL 2026','🕹️ 25 FREE MINI GAMES','🌍 5M+ GAMERS','⛏️ MINECRAFT COMMANDS','🎯 COD LOADOUTS','🔫 PUBG TIPS','⚽ EA FC 26 FUT','💰 GTA 5 CHEATS','🦙 PALWORLD GUIDE','🏏 CRICKET 26','📰 BREAKING NEWS DAILY','👾 PRO GAMING HUB'];const t=document.getElementById('tkr');if(t)t.innerHTML=[...items,...items].map(i=>`<span class="ti">${i}</span>`).join('')})();
 
-// ── SCROLL ──
+// ── SCROLL DOTS ──
 window.addEventListener('scroll',()=>{
   const pct=window.scrollY/(document.body.scrollHeight-window.innerHeight||1);
   const idx=Math.min(Math.floor(pct*5),4);
   for(let i=0;i<5;i++){const d=document.getElementById('sd'+i);if(d)d.classList.toggle('on',i===idx)}
   const ind=document.getElementById('scrollInd');
-  if(ind)ind.classList.toggle('hidden',window.scrollY>document.body.scrollHeight-window.innerHeight-80);
+  if(ind)ind.classList.toggle('hidden',window.scrollY>document.body.scrollHeight-window.innerHeight-100);
 },{passive:true});
 
 // ── COUNTERS ──
 function animCtrs(){
-  [{id:'c1',end:1200,s:'+'},{id:'c2',end:15,s:''},{id:'c3',end:150,s:'+'},{id:'c4',end:5,s:'M+'}].forEach(t=>{
+  [{id:'c1',end:1200,s:'+'},{id:'c2',end:25,s:''},{id:'c3',end:12,s:'+'},{id:'c4',end:5,s:'M+'}].forEach(t=>{
     const el=document.getElementById(t.id);if(!el)return;
     let n=0;const step=Math.ceil(t.end/55);const iv=setInterval(()=>{n=Math.min(n+step,t.end);el.textContent=n+t.s;if(n>=t.end)clearInterval(iv)},20);
   });
 }
 
-// ── GAMES DATA ──
-const FREE_GAMES=[
+// ── ALL GAMES DATA ──
+// Real games with images + price/free info
+const RGAMES=[
   {t:"Fortnite",g:"Battle Royale",p:"Cross-Platform",r:4.6,pl:410000,img:"https://cdn2.unrealengine.com/fortnite-chapter-5-season-3-header-1920x1080-8e8a77c7d57e.jpg",url:"https://www.fortnite.com",free:true},
   {t:"Valorant",g:"FPS",p:"PC",r:4.8,pl:350000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547890/header.jpg",url:"https://playvalorant.com",free:true},
   {t:"League of Legends",g:"MOBA",p:"PC",r:4.5,pl:425000,img:"https://ddragon.leagueoflegends.com/cdn/img/champion-splash/Jinx_0.jpg",url:"https://www.leagueoflegends.com",free:true},
@@ -725,17 +674,17 @@ const FREE_GAMES=[
   {t:"Warframe",g:"Action",p:"Cross-Platform",r:4.5,pl:125000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/230410/header.jpg",url:"https://store.steampowered.com/app/230410/Warframe/",free:true},
   {t:"PUBG: Battlegrounds",g:"Battle Royale",p:"PC",r:4.4,pl:290000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg",url:"https://store.steampowered.com/app/578080/PUBG_BATTLEGROUNDS/",free:true},
   {t:"Rocket League",g:"Sports",p:"Cross-Platform",r:4.6,pl:200000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252950/header.jpg",url:"https://www.rocketleague.com",free:true},
-  {t:"Roblox",g:"Sandbox",p:"Cross-Platform",r:4.3,pl:380000,img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Roblox_logo_2022.svg/400px-Roblox_logo_2022.svg.png",url:"https://www.roblox.com",free:true},
+  {t:"Roblox",g:"Sandbox",p:"Cross-Platform",r:4.3,pl:380000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1771900/header.jpg",url:"https://www.roblox.com",free:true},
   {t:"Dota 2",g:"MOBA",p:"PC",r:4.5,pl:310000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg",url:"https://store.steampowered.com/app/570/Dota_2/",free:true},
-  {t:"Genshin Impact",g:"RPG",p:"Cross-Platform",r:4.4,pl:265000,img:"https://img.genshin.mihoyo.com/genshin_character/common/img/bg_index_20240130_en.jpg",url:"https://genshin.hoyoverse.com",free:true},
+  {t:"Genshin Impact",g:"RPG",p:"Cross-Platform",r:4.4,pl:265000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1971870/header.jpg",url:"https://genshin.hoyoverse.com",free:true},
   {t:"The Finals",g:"FPS",p:"Cross-Platform",r:4.5,pl:88000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2073850/header.jpg",url:"https://www.reachthefinals.com",free:true},
   {t:"Marvel Rivals",g:"FPS",p:"PC",r:4.6,pl:165000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2767030/header.jpg",url:"https://store.steampowered.com/app/2767030/Marvel_Rivals/",free:true},
   {t:"Team Fortress 2",g:"FPS",p:"PC",r:4.4,pl:145000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/440/header.jpg",url:"https://store.steampowered.com/app/440/Team_Fortress_2/",free:true},
   {t:"Path of Exile",g:"RPG",p:"PC",r:4.5,pl:105000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/238960/header.jpg",url:"https://store.steampowered.com/app/238960/Path_of_Exile/",free:true},
-  {t:"Smite 2",g:"MOBA",p:"PC",r:4.2,pl:68000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2268540/header.jpg",url:"https://store.steampowered.com/app/2268540/SMITE_2/",free:true},
   {t:"Vampire Survivors",g:"Roguelike",p:"Cross-Platform",r:4.9,pl:88000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1794680/header.jpg",url:"https://store.steampowered.com/app/1794680/Vampire_Survivors/",free:true},
-];
-const PAID_GAMES=[
+  {t:"Smite 2",g:"MOBA",p:"PC",r:4.2,pl:68000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2268540/header.jpg",url:"https://store.steampowered.com/app/2268540/SMITE_2/",free:true},
+  {t:"War Thunder",g:"Strategy",p:"Cross-Platform",r:4.1,pl:145000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/236390/header.jpg",url:"https://store.steampowered.com/app/236390/War_Thunder/",free:true},
+  // PAID
   {t:"Minecraft",g:"Sandbox",p:"Cross-Platform",r:5.0,pl:485000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg",url:"https://www.minecraft.net",free:false,price:"$26.95"},
   {t:"Grand Theft Auto V",g:"Action",p:"PC",r:4.9,pl:320000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg",url:"https://store.steampowered.com/app/271590/Grand_Theft_Auto_V/",free:false,price:"$29.99"},
   {t:"EA FC 26",g:"Sports",p:"Cross-Platform",r:4.5,pl:210000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg",url:"https://www.ea.com/games/ea-sports-fc",free:false,price:"$69.99"},
@@ -749,110 +698,165 @@ const PAID_GAMES=[
   {t:"Helldivers 2",g:"Action",p:"Cross-Platform",r:4.7,pl:185000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/553850/header.jpg",url:"https://store.steampowered.com/app/553850/HELLDIVERS_2/",free:false,price:"$39.99"},
   {t:"Tekken 8",g:"Fighting",p:"Cross-Platform",r:4.6,pl:88000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1778820/header.jpg",url:"https://store.steampowered.com/app/1778820/TEKKEN_8/",free:false,price:"$59.99"},
   {t:"Street Fighter 6",g:"Fighting",p:"Cross-Platform",r:4.7,pl:98000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1877960/header.jpg",url:"https://store.steampowered.com/app/1877960/Street_Fighter_6/",free:false,price:"$59.99"},
-  {t:"Starfield",g:"RPG",p:"PC",r:4.1,pl:95000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1716740/header.jpg",url:"https://store.steampowered.com/app/1716740/Starfield/",free:false,price:"$69.99"},
-  {t:"Gran Turismo 7",g:"Racing",p:"PlayStation",r:4.7,pl:82000,img:"https://image.api.playstation.com/vulcan/ap/rnd/202207/1514/gSAEp4QDMaJMDAJ9x72kByJC.png",url:"https://www.gran-turismo.com",free:false,price:"$69.99"},
-  {t:"Diablo IV",g:"RPG",p:"Cross-Platform",r:4.4,pl:115000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2344520/header.jpg",url:"https://store.steampowered.com/app/2344520/Diablo_IV/",free:false,price:"$69.99"},
   {t:"Palworld",g:"Survival",p:"PC",r:4.3,pl:105000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg",url:"https://store.steampowered.com/app/1623730/Palworld/",free:false,price:"$29.99"},
   {t:"Black Myth: Wukong",g:"Action",p:"PC",r:4.8,pl:175000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg",url:"https://store.steampowered.com/app/2358720/Black_Myth_Wukong/",free:false,price:"$59.99"},
   {t:"Ghost of Tsushima",g:"Action",p:"PC",r:4.9,pl:88000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg",url:"https://store.steampowered.com/app/2215430/Ghost_of_Tsushima_DIRECTORS_CUT/",free:false,price:"$59.99"},
-  {t:"Alan Wake 2",g:"Horror",p:"PC",r:4.7,pl:72000,img:"https://cdn.cloudflare.steamstatic.com/steam/apps/2085650/header.jpg",url:"https://store.epicgames.com/en-US/p/alan-wake-2",free:false,price:"$59.99"},
   {t:"Stardew Valley",g:"Simulation",p:"Cross-Platform",r:4.9,pl:145000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",url:"https://store.steampowered.com/app/413150/Stardew_Valley/",free:false,price:"$14.99"},
   {t:"Hades",g:"Roguelike",p:"Cross-Platform",r:4.9,pl:112000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg",url:"https://store.steampowered.com/app/1145360/Hades/",free:false,price:"$24.99"},
   {t:"Dark Souls III",g:"RPG",p:"PC",r:4.8,pl:110000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/374320/header.jpg",url:"https://store.steampowered.com/app/374320/DARK_SOULS_III/",free:false,price:"$59.99"},
-  {t:"Persona 5 Royal",g:"RPG",p:"Cross-Platform",r:4.9,pl:98000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg",url:"https://store.steampowered.com/app/1687950/Persona_5_Royal/",free:false,price:"$59.99"},
-  {t:"Sekiro",g:"Action",p:"PC",r:4.8,pl:102000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg",url:"https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/",free:false,price:"$59.99"},
-  {t:"Need for Speed Unbound",g:"Racing",p:"Cross-Platform",r:4.3,pl:68000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1846380/header.jpg",url:"https://store.steampowered.com/app/1846380/Need_for_Speed_Unbound/",free:false,price:"$59.99"},
-  {t:"Final Fantasy XVI",g:"RPG",p:"PC",r:4.6,pl:92000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2515020/header.jpg",url:"https://store.steampowered.com/app/2515020/FINAL_FANTASY_XVI/",free:false,price:"$49.99"},
   {t:"Terraria",g:"Sandbox",p:"Cross-Platform",r:4.9,pl:145000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg",url:"https://store.steampowered.com/app/105600/Terraria/",free:false,price:"$9.99"},
   {t:"Monster Hunter World",g:"Action",p:"PC",r:4.8,pl:115000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/582010/header.jpg",url:"https://store.steampowered.com/app/582010/Monster_Hunter_World/",free:false,price:"$29.99"},
   {t:"Grand Theft Auto VI",g:"Action",p:"PlayStation",r:5.0,pl:500000,img:"https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTAVI_Trailer1_lucia.png/320px-GTAVI_Trailer1_lucia.png",url:"https://www.rockstargames.com/VI",free:false,price:"$69.99"},
-  {t:"Rainbow Six Siege",g:"Tactical",p:"PC",r:4.4,pl:155000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/header.jpg",url:"https://store.steampowered.com/app/359550/Tom_Clancys_Rainbow_Six_Siege/",free:false,price:"$19.99"},
-  {t:"Slay the Spire",g:"Card",p:"Cross-Platform",r:4.9,pl:95000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/646570/header.jpg",url:"https://store.steampowered.com/app/646570/Slay_the_Spire/",free:false,price:"$24.99"},
-  {t:"Balatro",g:"Card",p:"PC",r:4.9,pl:75000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg",url:"https://store.steampowered.com/app/2379780/Balatro/",free:false,price:"$14.99"},
+  {t:"Need for Speed Unbound",g:"Racing",p:"Cross-Platform",r:4.3,pl:68000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1846380/header.jpg",url:"https://store.steampowered.com/app/1846380/Need_for_Speed_Unbound/",free:false,price:"$59.99"},
   {t:"Civilization VI",g:"Strategy",p:"PC",r:4.7,pl:105000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/289070/header.jpg",url:"https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/",free:false,price:"$59.99"},
-  {t:"Hogwarts Legacy",g:"RPG",p:"Cross-Platform",r:4.6,pl:125000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/990080/header.jpg",url:"https://store.steampowered.com/app/990080/Hogwarts_Legacy/",free:false,price:"$59.99"},
+  {t:"Sekiro",g:"Action",p:"PC",r:4.8,pl:102000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg",url:"https://store.steampowered.com/app/814380/Sekiro_Shadows_Die_Twice__GOTY_Edition/",free:false,price:"$59.99"},
+  {t:"Balatro",g:"Card",p:"PC",r:4.9,pl:75000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg",url:"https://store.steampowered.com/app/2379780/Balatro/",free:false,price:"$14.99"},
+  {t:"Alan Wake 2",g:"Horror",p:"PC",r:4.7,pl:72000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2085650/header.jpg",url:"https://store.epicgames.com/en-US/p/alan-wake-2",free:false,price:"$59.99"},
+  {t:"Persona 5 Royal",g:"RPG",p:"Cross-Platform",r:4.9,pl:98000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/header.jpg",url:"https://store.steampowered.com/app/1687950/Persona_5_Royal/",free:false,price:"$59.99"},
+  {t:"Gran Turismo 7",g:"Racing",p:"PlayStation",r:4.7,pl:82000,img:"https://image.api.playstation.com/vulcan/ap/rnd/202207/1514/gSAEp4QDMaJMDAJ9x72kByJC.png",url:"https://www.gran-turismo.com",free:false,price:"$69.99"},
+  {t:"Rainbow Six Siege",g:"Tactical",p:"PC",r:4.4,pl:155000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/359550/header.jpg",url:"https://store.steampowered.com/app/359550/Tom_Clancys_Rainbow_Six_Siege/",free:false,price:"$19.99"},
+  {t:"Diablo IV",g:"RPG",p:"Cross-Platform",r:4.4,pl:115000,img:"https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2344520/header.jpg",url:"https://store.steampowered.com/app/2344520/Diablo_IV/",free:false,price:"$69.99"},
 ];
 
-// ── SEEDED GENERATED EXTRA GAMES ──
-function extraGames(){
-  const pfx=["Cyber","Neon","Shadow","Turbo","Hyper","Ultra","Dark","Star","Iron","Crystal","Phantom","Blaze","Storm","Nova","Pixel","Quantum","Rogue","Savage","Elite","Prime","Apex","Void","Solar","Lunar","Arctic","Inferno","Thunder","Vortex","Omega","Alpha"];
-  const cores=["Strike","Quest","Arena","Legends","Warriors","Chronicles","Odyssey","Frontline","Siege","Reborn","Rising","Empire","Kingdom","Assault","Battle","Hunter","Clash","Raid","Forge","Blade","Shield","Rift","Pulse","Genesis","Eclipse","Horizon","Vector","Matrix","Force","Edge"];
-  const sfx=["2049","X","Z","Pro","Max","Plus","Reloaded","Online","World","Universe","Forever","Evolved","Origins","Infinite","Revolution","Extreme","Ultimate","Deluxe","II","III","IV","V"];
-  const genres=["Action","Adventure","RPG","FPS","Racing","Sports","Strategy","Simulation","Horror","Fighting","Puzzle","Platformer","MMO","Battle Royale","Sandbox","Survival","Roguelike","Indie","Arcade","MOBA","Card","Rhythm","Tactical"];
+// Generated extra games to reach 1200
+function genExtra(){
+  const pfx=["Cyber","Neon","Shadow","Turbo","Hyper","Ultra","Dark","Star","Iron","Crystal","Phantom","Blaze","Storm","Nova","Pixel","Quantum","Rogue","Savage","Elite","Prime","Apex","Void","Solar","Lunar","Arctic","Inferno","Thunder","Vortex","Omega","Alpha","Delta","Sigma","Chaos","Legend","Mythic","Epic","Grand","Royal","Wild","Feral","Steel","Ghost","Rapid","Silent","Deadly","Brutal","Cosmic","Nexus","Toxic","Frozen"];
+  const cores=["Strike","Quest","Arena","Legends","Warriors","Chronicles","Odyssey","Frontline","Siege","Reborn","Rising","Empire","Kingdom","Assault","Battle","Hunter","Clash","Raid","Forge","Blade","Shield","Rift","Pulse","Genesis","Eclipse","Horizon","Vector","Matrix","Force","Edge","Core","Link","Shift","Drive","Run","Dash","Loop","Grid","Zone","Gate","Path","Trail","Peak","Depth","Sky","Storm","Fire","Ice","Void","Wave"];
+  const sfx=["2049","X","Z","Pro","Max","Plus","Reloaded","Online","World","Universe","Forever","Evolved","Origins","Infinite","Revolution","Extreme","Ultimate","Deluxe","II","III","IV","V","VI","HD","VR","Clash","Reborn","Arena"];
+  const genres=["Action","Adventure","RPG","FPS","Racing","Sports","Strategy","Simulation","Horror","Fighting","Puzzle","Platformer","MMO","Battle Royale","Sandbox","Survival","Roguelike","Indie","Arcade","MOBA","Card","Tactical"];
   const plats=["PC","PlayStation","Xbox","Nintendo Switch","Mobile","Cross-Platform"];
-  const colors=["#ff2d78","#00f5ff","#39ff14","#ffe600","#8b5cf6","#ff6b00","#00cfff","#ff00aa","#9cff57","#3a86ff"];
-  function rng(s){let x=s;return()=>{x=(x*16807)%2147483647;return(x-1)/2147483646}}
-  const r=rng(77);const extra=[];const used=new Set([...FREE_GAMES,...PAID_GAMES].map(g=>g.t));
-  while(extra.length<1147){
-    const t=`${pfx[Math.floor(r()*pfx.length)]} ${cores[Math.floor(r()*cores.length)]} ${sfx[Math.floor(r()*sfx.length)]}`;
+  const cols=["#ff2d78","#00f5ff","#39ff14","#ffe600","#8b5cf6","#ff6b00","#00cfff","#ff00aa","#9cff57","#3a86ff","#ff9e00"];
+  let s=77,x;const rng=()=>{s=(s*16807)%2147483647;return(s-1)/2147483646};
+  const pick=a=>a[Math.floor(rng()*a.length)];
+  const extra=[];const used=new Set(RGAMES.map(g=>g.t));
+  while(extra.length<1150){
+    const t=`${pick(pfx)} ${pick(cores)} ${pick(sfx)}`;
     if(used.has(t))continue;used.add(t);
-    const isFree=r()<.45;
-    extra.push({t,g:genres[Math.floor(r()*genres.length)],p:plats[Math.floor(r()*plats.length)],r:parseFloat((2.5+r()*2.4).toFixed(1)),pl:Math.floor(100+r()*150000),img:'',url:'',free:isFree,price:isFree?null:`$${(r()*55+4.99).toFixed(2)}`,col:colors[Math.floor(r()*colors.length)]});
+    const isFree=rng()<.45;
+    extra.push({t,g:pick(genres),p:pick(plats),r:parseFloat((2.5+rng()*2.4).toFixed(1)),pl:Math.floor(100+rng()*150000),img:'',url:'',free:isFree,price:isFree?null:`$${(rng()*55+4.99).toFixed(2)}`,col:pick(cols)});
   }
   return extra;
 }
-let ALL_G=null;
-function getAll(){if(!ALL_G)ALL_G=[...FREE_GAMES,...PAID_GAMES,...extraGames()];return ALL_G}
+let _ALL=null;
+function getAll(){if(!_ALL)_ALL=[...RGAMES,...genExtra()];return _ALL}
 function fmtP(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1000?(n/1000).toFixed(0)+'K':''+n}
+function inits(t){return t.split(/[\s:&']+/).slice(0,2).map(w=>w[0]||'').join('').toUpperCase()}
 
 function gameCard(g){
-  const imgH=g.img?`<img class="gc-img" src="${g.img}" alt="${g.t}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" loading="lazy"><div class="gc-fallback" style="display:none;background:${g.col||'#111'}">${g.t.split(/[\s:]+/).slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>`:`<div class="gc-fallback" style="background:${g.col||'#111'}">${g.t.split(/[\s:]+/).slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>`;
-  const badge=g.free?'<div class="free-badge">FREE</div>':'<div class="paid-badge">PAID</div>';
-  const priceLine=g.free?`<div class="gc-price">🟢 FREE TO PLAY</div>`:`<div class="gc-price paid">💳 ${g.price||'See Store'} · Buy on Store</div>`;
-  return `<div class="gc" onclick="launchGame('${g.t.replace(/'/g,"\\'")}','${(g.url||'').replace(/'/g,"\\'")}',${g.free},'${g.price||''}')" title="${g.t}">
-    <div class="gc-img-wrap">${badge}${imgH}<div class="gc-overlay">${g.free?'▶ PLAY FREE':'🛒 VIEW ON STORE'}</div></div>
-    <div class="gc-body">
-      <div class="gc-title">${g.t}</div>
-      <div class="gc-meta"><span class="tag tc">${g.g}</span><span class="tag tp">${g.p}</span></div>
-      <div class="gc-rating">⭐ ${g.r} · ${fmtP(g.pl)} players</div>
-      ${priceLine}
-    </div>
+  const bg=g.img?'':`style="--fbg:${g.col||'#111'}"`;
+  const imgH=g.img
+    ?`<img class="gc-img" src="${g.img}" alt="${g.t}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="gc-fb" style="display:none;--fbg:${g.col||'#111'}">${inits(g.t)}</div>`
+    :`<div class="gc-fb" style="--fbg:${g.col||'#111'}">${inits(g.t)}</div>`;
+  const badge=`<div class="fbadge ${g.free?'free':'paid'}">${g.free?'FREE':'PAID'}</div>`;
+  const price=g.free
+    ?`<div class="gc-price">🟢 FREE TO PLAY</div>`
+    :`<div class="gc-price paid">💳 ${g.price||'See Store'}</div>`;
+  return `<div class="gc" ${bg} onclick="launchGame('${g.t.replace(/'/g,"\\'").replace(/"/g,'&quot;')}','${(g.url||'').replace(/'/g,"\\'")}',${g.free},'${g.price||''}')">
+    <div class="gc-iw">${badge}${imgH}<div class="gc-ov">${g.free?'▶ PLAY FREE':'🛒 VIEW STORE'}</div></div>
+    <div class="gc-body"><div class="gc-title">${g.t}</div><div class="gc-meta"><span class="tag tc">${g.g}</span><span class="tag tp">${g.p}</span></div><div class="gc-rating">⭐ ${g.r} · ${fmtP(g.pl)} players</div>${price}</div>
   </div>`;
 }
 
-// ── MINI GAMES DATA ──
-const MINI_GAMES=[
-  {t:"Pac-Man",emoji:"👾",bg:"linear-gradient(135deg,#1a1a00,#ffe600)",url:"https://www.google.com/logos/2010/pacman10-i.html",desc:"Classic arcade ghost-eating game",tag:"Arcade"},
-  {t:"2048",emoji:"🔢",bg:"linear-gradient(135deg,#001a1a,#00f5ff)",url:"https://play2048.co/",desc:"Slide tiles to reach 2048",tag:"Puzzle"},
-  {t:"Flappy Bird Clone",emoji:"🐦",bg:"linear-gradient(135deg,#001433,#3a86ff)",url:"https://flappybird.io/",desc:"Tap to fly through pipes",tag:"Arcade"},
-  {t:"Slope Game",emoji:"⚡",bg:"linear-gradient(135deg,#0d001a,#8b5cf6)",url:"https://slope-game.com/",desc:"Roll a ball down endless slope",tag:"Action"},
-  {t:"Tetris",emoji:"🟦",bg:"linear-gradient(135deg,#001a1a,#00cfff)",url:"https://tetris.com/play-tetris",desc:"Classic block stacking puzzle",tag:"Puzzle"},
-  {t:"Chess",emoji:"♟️",bg:"linear-gradient(135deg,#0d0d0d,#555)",url:"https://www.chess.com/play/computer",desc:"Play chess vs computer",tag:"Strategy"},
-  {t:"Sudoku",emoji:"🧩",bg:"linear-gradient(135deg,#001a33,#3a86ff)",url:"https://sudoku.com/",desc:"Classic number puzzle game",tag:"Puzzle"},
-  {t:"Wordle",emoji:"🟩",bg:"linear-gradient(135deg,#001400,#39ff14)",url:"https://www.nytimes.com/games/wordle/index.html",desc:"Guess the 5-letter word in 6 tries",tag:"Word"},
-  {t:"Krunker.io",emoji:"🎯",bg:"linear-gradient(135deg,#1a0000,#ff2d78)",url:"https://krunker.io/",desc:"Browser FPS multiplayer shooter",tag:"Shooter"},
-  {t:"Agar.io",emoji:"🔵",bg:"linear-gradient(135deg,#001a0d,#39ff14)",url:"https://agar.io/",desc:"Eat cells to grow biggest",tag:"Arcade"},
-  {t:"Slither.io",emoji:"🐍",bg:"linear-gradient(135deg,#001400,#004400)",url:"https://slither.io/",desc:"Grow your snake, be the biggest",tag:"Arcade"},
-  {t:"Paper.io 2",emoji:"🗺️",bg:"linear-gradient(135deg,#00001a,#4444ff)",url:"https://paper-io.com/",desc:"Capture territory on the grid",tag:"Strategy"},
-  {t:"Moto X3M",emoji:"🏍️",bg:"linear-gradient(135deg,#1a0800,#ff6b00)",url:"https://www.y8.com/games/moto_x3m",desc:"Extreme motorcycle stunt racing",tag:"Racing"},
-  {t:"Cut the Rope",emoji:"🍬",bg:"linear-gradient(135deg,#1a001a,#ff00aa)",url:"https://www.cuttherope.app/",desc:"Cut ropes to feed the monster",tag:"Puzzle"},
-  {t:"Crazy Bike",emoji:"🚴",bg:"linear-gradient(135deg,#001a0d,#00ff88)",url:"https://www.crazygames.com/game/crazy-bike-stunt-master",desc:"Perform crazy bike stunts",tag:"Sports"},
+// ── MINI GAMES DATA ── 25 total
+const MINI=[
+  {t:"Pac-Man",e:"👾",bg:"linear-gradient(135deg,#1a1a00,#ffe600)",url:"https://www.google.com/logos/2010/pacman10-i.html",d:"Classic ghost-eating arcade game",tag:"Arcade",img:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/PacMan.svg/250px-PacMan.svg.png"},
+  {t:"2048",e:"🔢",bg:"linear-gradient(135deg,#001a1a,#00f5ff)",url:"https://play2048.co/",d:"Slide tiles to reach 2048",tag:"Puzzle",img:""},
+  {t:"Flappy Bird",e:"🐦",bg:"linear-gradient(135deg,#001433,#3a86ff)",url:"https://flappybird.io/",d:"Tap to fly through pipes",tag:"Arcade",img:""},
+  {t:"Slope",e:"⚡",bg:"linear-gradient(135deg,#0d001a,#8b5cf6)",url:"https://slope-game.com/",d:"Roll a ball down an endless slope",tag:"Action",img:""},
+  {t:"Tetris",e:"🟦",bg:"linear-gradient(135deg,#001a1a,#00cfff)",url:"https://tetris.com/play-tetris",d:"Classic block stacking puzzle",tag:"Puzzle",img:""},
+  {t:"Chess",e:"♟️",bg:"linear-gradient(135deg,#0d0d0d,#555)",url:"https://www.chess.com/play/computer",d:"Play chess vs AI computer",tag:"Strategy",img:""},
+  {t:"Sudoku",e:"🧩",bg:"linear-gradient(135deg,#001a33,#3a86ff)",url:"https://sudoku.com/",d:"Classic number puzzle",tag:"Puzzle",img:""},
+  {t:"Wordle",e:"🟩",bg:"linear-gradient(135deg,#001400,#39ff14)",url:"https://www.nytimes.com/games/wordle/index.html",d:"Guess the 5-letter word in 6 tries",tag:"Word",img:""},
+  {t:"Krunker.io",e:"🎯",bg:"linear-gradient(135deg,#1a0000,#ff2d78)",url:"https://krunker.io/",d:"Browser FPS multiplayer",tag:"Shooter",img:""},
+  {t:"Agar.io",e:"🔵",bg:"linear-gradient(135deg,#001a0d,#39ff14)",url:"https://agar.io/",d:"Eat cells and grow the biggest",tag:"Arcade",img:""},
+  {t:"Slither.io",e:"🐍",bg:"linear-gradient(135deg,#001400,#004400)",url:"https://slither.io/",d:"Grow your snake, be the biggest",tag:"Arcade",img:""},
+  {t:"Paper.io 2",e:"🗺️",bg:"linear-gradient(135deg,#00001a,#4444ff)",url:"https://paper-io.com/",d:"Capture territory on the grid",tag:"Strategy",img:""},
+  {t:"Moto X3M",e:"🏍️",bg:"linear-gradient(135deg,#1a0800,#ff6b00)",url:"https://www.y8.com/games/moto_x3m",d:"Extreme motorcycle stunt racing",tag:"Racing",img:""},
+  {t:"Cut the Rope",e:"🍬",bg:"linear-gradient(135deg,#1a001a,#ff00aa)",url:"https://www.cuttherope.app/",d:"Feed the monster by cutting ropes",tag:"Puzzle",img:""},
+  {t:"Cookie Clicker",e:"🍪",bg:"linear-gradient(135deg,#1a0800,#cc6600)",url:"https://orteil.dashnet.org/cookieclicker/",d:"Click cookies to build your empire",tag:"Clicker",img:""},
+  {t:"Spidey Swing",e:"🕷️",bg:"linear-gradient(135deg,#1a0000,#cc0000)",url:"https://www.crazygames.com/game/spidey-swing",d:"Swing through the city as Spider-Man",tag:"Action",img:""},
+  {t:"Surviv.io",e:"🔫",bg:"linear-gradient(135deg,#001400,#336600)",url:"https://surviv.io/",d:"2D battle royale browser game",tag:"Battle Royale",img:""},
+  {t:"Diep.io",e:"💥",bg:"linear-gradient(135deg,#001a33,#0066cc)",url:"https://diep.io/",d:"Tank shooter upgrade game",tag:"Shooter",img:""},
+  {t:"Zombs Royale",e:"🧟",bg:"linear-gradient(135deg,#001400,#006600)",url:"https://zombsroyale.io/",d:"2D battle royale with zombies",tag:"Battle Royale",img:""},
+  {t:"Mini Golf",e:"⛳",bg:"linear-gradient(135deg,#001400,#339933)",url:"https://www.crazygames.com/game/mini-golf-club",d:"Play mini golf online free",tag:"Sports",img:""},
+  {t:"Solitaire",e:"🃏",bg:"linear-gradient(135deg,#001a33,#004488)",url:"https://www.solitaire.org/",d:"Classic card solitaire game",tag:"Card",img:""},
+  {t:"Crossword",e:"📰",bg:"linear-gradient(135deg,#0d0d0d,#333366)",url:"https://www.nytimes.com/crosswords",d:"Daily crossword puzzle challenge",tag:"Word",img:""},
+  {t:"Geometry Dash Lite",e:"🔷",bg:"linear-gradient(135deg,#001a1a,#009999)",url:"https://www.crazygames.com/game/geometry-dash-lite",d:"Jump and fly to the rhythm",tag:"Rhythm",img:""},
+  {t:"Stack Ball",e:"🎱",bg:"linear-gradient(135deg,#1a0033,#6600cc)",url:"https://www.crazygames.com/game/stack-ball",d:"Break through colored platforms",tag:"Arcade",img:""},
+  {t:"Snake Classic",e:"🐍",bg:"linear-gradient(135deg,#001a00,#003300)",url:"https://www.crazygames.com/game/snake",d:"Classic snake game remastered",tag:"Classic",img:""},
 ];
 
 function miniCard(g){
-  return `<div class="mini-card" onclick="window.open('${g.url}','_blank','noopener')">
-    <div class="mini-thumb" style="background:${g.bg}">${g.emoji}</div>
-    <div class="mini-body">
-      <div class="mini-title">${g.t}</div>
-      <div class="mini-sub">${g.desc}</div>
-      <span class="tag tg">${g.tag}</span> <span class="tag tc" style="margin-left:.3rem">FREE</span>
+  return `<div class="mc" onclick="openMini('${g.url}','${g.t.replace(/'/g,"\\'")}')">
+    <div class="mc-thumb" style="background:${g.bg}">
+      ${g.img?`<img class="mc-img" src="${g.img}" alt="${g.t}" onerror="this.style.display='none'" loading="lazy">`:''}
+      <div class="mc-emoji">${g.e}</div>
+      <div class="mc-ov">▶ PLAY FREE</div>
     </div>
+    <div class="mc-body"><div class="mc-title">${g.t}</div><div class="mc-sub">${g.d}</div><span class="tag tg">${g.tag}</span> <span class="tag tc" style="margin-left:.2rem">FREE</span></div>
+  </div>`;
+}
+function openMini(url,title){window.open(url,'_blank','noopener,noreferrer')}
+
+// ── GUIDES DATA ──
+const GUIDES=[
+  {id:'gMinecraft',title:'Minecraft',sub:'Commands, redstone, survival & building',tag:'25+ Commands',tc:'tg',emoji:'⛏️',bg:'linear-gradient(135deg,#4ade80,#14532d)',img:'https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Vanilla_KeyArt_1280x720.jpg'},
+  {id:'gGTA5',title:'GTA 5 & Online',sub:'Cheat codes, money methods & heist guides',tag:'Cheat Codes',tc:'to',emoji:'🚗',bg:'linear-gradient(135deg,#f97316,#991b1b)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg'},
+  {id:'gFC26',title:'EA FC 26',sub:'FUT trading, skill moves & formations',tag:'FUT Guide',tc:'tc',emoji:'⚽',bg:'linear-gradient(135deg,#3b82f6,#1e3a8a)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg'},
+  {id:'gCOD',title:'Call of Duty',sub:'Meta loadouts, ranked tips & movement tech',tag:'Loadouts',tc:'tm',emoji:'🎯',bg:'linear-gradient(135deg,#ef4444,#450a0a)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg'},
+  {id:'gPUBG',title:'PUBG',sub:'Drop spots, weapons & squad tactics',tag:'BR Tips',tc:'to',emoji:'🔫',bg:'linear-gradient(135deg,#eab308,#713f12)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg'},
+  {id:'gPalworld',title:'Palworld',sub:'Pal catching, base building & combat',tag:'Full Guide',tc:'tp',emoji:'🦙',bg:'linear-gradient(135deg,#22c55e,#0f4c25)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg'},
+  {id:'gCricket',title:'Cricket 26',sub:'Batting, bowling, career mode & top players',tag:'Full Guide',tc:'ty',emoji:'🏏',bg:'linear-gradient(135deg,#16a34a,#052e16)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1851080/header.jpg'},
+  {id:'gFortnite',title:'Fortnite',sub:'Building, loadouts & Chapter 5 strategies',tag:'Chapter 5',tc:'tc',emoji:'🪂',bg:'linear-gradient(135deg,#7c3aed,#1e1b4b)',img:'https://cdn2.unrealengine.com/fortnite-chapter-5-season-3-header-1920x1080-8e8a77c7d57e.jpg'},
+  {id:'gElden',title:'Elden Ring',sub:'Boss strategies, best builds & rune farming',tag:'Souls Guide',tc:'tm',emoji:'⚔️',bg:'linear-gradient(135deg,#d97706,#451a03)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg'},
+  {id:'gValorant',title:'Valorant',sub:'Agent tips, ranked climb & economy tips',tag:'Ranked Tips',tc:'tr',emoji:'🎯',bg:'linear-gradient(135deg,#dc2626,#450a0a)',img:'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1547890/header.jpg'},
+  {id:'guides',title:'More Coming',sub:'Helldivers 2, Terraria, Stardew & 30+ more',tag:'Coming Soon',tc:'tp',emoji:'📚',bg:'linear-gradient(90deg,#00f5ff,#ff00aa,#8b5cf6)',img:''},
+];
+function guideCard(g){
+  return `<div class="gdc" onclick="showPage('${g.id}')">
+    <div class="gdc-thumb" style="background:${g.bg}">${g.img?`<img src="${g.img}" alt="${g.title}" onerror="this.style.display='none'" loading="lazy">`:''}<span>${g.emoji} ${g.title.toUpperCase()}</span></div>
+    <div class="gdc-body"><h3>${g.title}</h3><p>${g.sub}</p><span class="tag ${g.tc}">${g.tag}</span></div>
   </div>`;
 }
 
-function renderMini(){
-  const mg=document.getElementById('miniGrid');if(mg)mg.innerHTML=MINI_GAMES.map(miniCard).join('');
-  const hm=document.getElementById('homeMiniv');if(hm)hm.innerHTML=MINI_GAMES.slice(0,4).map(miniCard).join('');
+// ── RENDER FUNCTIONS ──
+function renderHomeGames(){
+  // 2 full rows of 4 = 8 games on home
+  const hg=document.getElementById('homeG');if(!hg)return;
+  const feat=[...RGAMES.slice(0,8)];hg.innerHTML=feat.map(gameCard).join('');
+}
+function renderHomeMini(){
+  // 2 full rows of 4 = 8 mini games on home
+  const hm=document.getElementById('homeM');if(!hm)return;
+  hm.innerHTML=MINI.slice(0,8).map(miniCard).join('');
+}
+function renderHomeNews(){
+  const hn=document.getElementById('homeN');if(!hn)return;
+  hn.innerHTML=`
+  <div class="nc hot"><img class="nc-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTAVI_Trailer1_lucia.png/400px-GTAVI_Trailer1_lucia.png" alt="GTA 6" onerror="this.style.display='none'"><div class="nc-date">🔥 June 2026 · Breaking</div><h3>GTA 6 Official: Fall 2026 — Vice City, Lucia &amp; Jason Confirmed</h3><p>Largest open world ever. Dynamic weather, GTA Online 2.0. Pre-orders shattered all records in 48 hours.</p><a onclick="showPage('news')">Read full story →</a></div>
+  <div class="nc"><img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" alt="FC26" onerror="this.style.display='none'"><div class="nc-date">May 2026</div><h3>EA FC 26 — HyperMotion V &amp; Cross-Platform FUT Revealed</h3><p>PS5, Xbox &amp; PC players compete together in FUT for the first time. HyperMotion V captures 180+ pros.</p><a onclick="showPage('news')">Read more →</a></div>
+  <div class="nc"><img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" alt="COD" onerror="this.style.display='none'"><div class="nc-date">May 2026</div><h3>Black Ops 6 Season 4: Verdansk Reborn</h3><p>Destructible environments, tunnel networks &amp; dynamic gas circle. Biggest update in franchise history.</p><a onclick="showPage('news')">Read more →</a></div>
+  <div class="nc"><img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1623730/header.jpg" alt="Palworld" onerror="this.style.display='none'"><div class="nc-date">April 2026</div><h3>Palworld 2.0 Update Adds New Island &amp; 50 New Pals</h3><p>Pocket Pair drops its biggest update with a new ocean biome, fishing mechanics &amp; online raid bosses.</p><a onclick="showPage('news')">Read more →</a></div>`;
+}
+function renderHomeGuides(){
+  // 2 full rows of 3 = 6 guides on home
+  const hg=document.getElementById('homeGD');if(!hg)return;
+  hg.innerHTML=GUIDES.slice(0,6).map(guideCard).join('');
+}
+function renderGuidesPage(){
+  const gg=document.getElementById('guidesGrid');if(!gg)return;
+  gg.innerHTML=GUIDES.map(guideCard).join('');
+}
+function renderMiniPage(){
+  const mg=document.getElementById('miniGrid');if(!mg)return;
+  mg.innerHTML=MINI.map(miniCard).join('');
 }
 
-// GAMES PAGE
+// ── GAMES PAGE ──
 const PG=24;let filtG=[],curPg=1;
-function loadGPage(){filtG=[...getAll()];renderGC();renderGG();renderPagi()}
-function renderGC(){const el=document.getElementById('gCount');if(el)el.innerHTML=`Showing <strong>${filtG.length}</strong> of <strong>${getAll().length}</strong> games`}
-function renderGG(){
-  const g=document.getElementById('gGrid');if(!g)return;
-  const s=(curPg-1)*PG;g.innerHTML=filtG.slice(s,s+PG).map(gameCard).join('');
-}
+function loadGPage(){filtG=[...getAll()];renderGCnt();renderGGrid();renderPagi()}
+function renderGCnt(){const el=document.getElementById('gcnt');if(el)el.innerHTML=`Showing <strong>${filtG.length}</strong> of <strong>${getAll().length}</strong> games`}
+function renderGGrid(){const g=document.getElementById('ggrid');if(!g)return;const s=(curPg-1)*PG;g.innerHTML=filtG.slice(s,s+PG).map(gameCard).join('')}
 function renderPagi(){
   const c=document.getElementById('pagi');if(!c)return;
   const tot=Math.ceil(filtG.length/PG);if(tot<=1){c.innerHTML='';return}
@@ -862,7 +866,7 @@ function renderPagi(){
   h+=`<button ${curPg===tot?'disabled':''} onclick="goP(${curPg+1})">Next →</button>`;
   c.innerHTML=h;
 }
-function goP(p){curPg=p;renderGG();renderPagi();window.scrollTo({top:0,behavior:'smooth'})}
+function goP(p){curPg=p;renderGGrid();renderPagi();window.scrollTo({top:0,behavior:'smooth'})}
 function applyF(){
   const q=(document.getElementById('srch')||{}).value?.toLowerCase()||'';
   const gf=document.getElementById('gf')?.value||'';
@@ -874,96 +878,44 @@ function applyF(){
     const mf=!ff||(ff==='free'&&g.free)||(ff==='paid'&&!g.free);
     return mq&&mg&&mp&&mf;
   });
-  curPg=1;renderGC();renderGG();renderPagi();
+  curPg=1;renderGCnt();renderGGrid();renderPagi();
 }
 
-// HOME RENDERS
-function renderHomeGames(){
-  const hg=document.getElementById('homeGames');
-  if(hg){const feat=[...FREE_GAMES.slice(0,4),...PAID_GAMES.slice(0,4)];hg.innerHTML=feat.map(gameCard).join('')}
-}
-function renderHomeNews(){
-  const hn=document.getElementById('homeNews');if(!hn)return;
-  hn.innerHTML=`
-  <div class="nc hot">
-    <img class="nc-img" src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/GTAVI_Trailer1_lucia.png/400px-GTAVI_Trailer1_lucia.png" alt="GTA 6" onerror="this.style.display='none'">
-    <div class="nc-date">🔥 June 2026 · Breaking</div>
-    <h3>GTA 6 Official: Fall 2026 — Vice City, Lucia &amp; Jason Confirmed</h3>
-    <p>Rockstar confirms largest open world ever. Dynamic weather, GTA Online 2.0. Pre-orders shattered all records in 48 hours.</p>
-    <a onclick="showPage('news')">Read full story →</a>
-  </div>
-  <div class="nc">
-    <img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" alt="FC26" onerror="this.style.display='none'">
-    <div class="nc-date">May 2026</div>
-    <h3>EA FC 26 — HyperMotion V &amp; Cross-Platform FUT Revealed</h3>
-    <p>For the first time PS5, Xbox &amp; PC players compete together in Ultimate Team. HyperMotion V captures 180+ pros.</p>
-    <a onclick="showPage('news')">Read more →</a>
-  </div>
-  <div class="nc">
-    <img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" alt="COD" onerror="this.style.display='none'">
-    <div class="nc-date">May 2026</div>
-    <h3>Black Ops 6 Season 4: Verdansk Reborn Warzone Map</h3>
-    <p>Destructible environments, tunnel networks &amp; dynamic gas circle. Biggest map update in franchise history.</p>
-    <a onclick="showPage('news')">Read more →</a>
-  </div>
-  <div class="nc">
-    <img class="nc-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1672970/header.jpg" alt="Minecraft" onerror="this.style.display='none'">
-    <div class="nc-date">May 2026</div>
-    <h3>Minecraft 1.22 "Garden Awakens" — New Biomes &amp; Cross-Save</h3>
-    <p>Glowing flora, Gardener Villager &amp; cross-save between all platforms via Microsoft account.</p>
-    <a onclick="showPage('news')">Read more →</a>
-  </div>`;
-}
-function renderHomeGuides(){
-  const hg=document.getElementById('homeGuides');if(!hg)return;
-  hg.innerHTML=`
-  <div class="gdc" onclick="showPage('gMinecraft')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#4ade80,#14532d)"><img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/MC_Vanilla_KeyArt_1280x720.jpg" alt="Minecraft" onerror="this.style.display='none'"><span>⛏️ MINECRAFT</span></div><div class="gdc-body"><h3>Minecraft Guide</h3><p>Commands, redstone &amp; survival tips.</p><span class="tag tg">25+ Commands</span></div></div>
-  <div class="gdc" onclick="showPage('gGTA5')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#f97316,#991b1b)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA5" onerror="this.style.display='none'"><span>🚗 GTA 5</span></div><div class="gdc-body"><h3>GTA 5 Guide</h3><p>Cheat codes, money &amp; heist guides.</p><span class="tag to">Cheat Codes</span></div></div>
-  <div class="gdc" onclick="showPage('gFC26')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#3b82f6,#1e3a8a)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2686310/header.jpg" alt="FC26" onerror="this.style.display='none'"><span>⚽ FC 26</span></div><div class="gdc-body"><h3>EA FC 26 Guide</h3><p>FUT trading, skill moves &amp; formations.</p><span class="tag tc">FUT Guide</span></div></div>
-  <div class="gdc" onclick="showPage('gCOD')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#ef4444,#450a0a)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2933620/header.jpg" alt="COD" onerror="this.style.display='none'"><span>🎯 COD</span></div><div class="gdc-body"><h3>COD Pro Guide</h3><p>Meta loadouts &amp; ranked tips.</p><span class="tag tm">Loadouts</span></div></div>
-  <div class="gdc" onclick="showPage('gPUBG')"><div class="gdc-thumb" style="background:linear-gradient(135deg,#eab308,#713f12)"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/578080/header.jpg" alt="PUBG" onerror="this.style.display='none'"><span>🔫 PUBG</span></div><div class="gdc-body"><h3>PUBG Guide</h3><p>Drop spots, weapons &amp; squad tactics.</p><span class="tag to">BR Tips</span></div></div>
-  <div class="gdc" onclick="showPage('guides')"><div class="gdc-thumb" style="background:linear-gradient(90deg,#00f5ff,#ff00aa,#8b5cf6)"><span>📚 ALL GUIDES</span></div><div class="gdc-body"><h3>All Guides</h3><p>Browse the full guide library.</p><span class="tag tp">50+ Guides</span></div></div>`;
-}
-
-// PAGE ROUTER
+// ── PAGE ROUTER ──
+const NL_MAP={'home':'home','games':'games','mini':'mini','guides':'guides','gMinecraft':'guides','gGTA5':'guides','gFC26':'guides','gCOD':'guides','gPUBG':'guides','gPalworld':'guides','gCricket':'guides','gFortnite':'guides','gElden':'guides','gValorant':'guides','news':'news','about':'about','contact':'contact','privacy':'contact'};
 function showPage(p,genre){
   document.querySelectorAll('.page').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(el=>el.classList.remove('on'));
+  document.querySelectorAll('.nav-links a,.mnav a').forEach(el=>el.classList.remove('on'));
   const pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');
-  const nlMap={'home':'home','games':'games','mini':'mini','guides':'guides','gMinecraft':'guides','gGTA5':'guides','gFC26':'guides','gCOD':'guides','gPUBG':'guides','news':'news','about':'about','contact':'contact','privacy':'contact'};
-  const nlId='nl-'+(nlMap[p]||p.split('-')[0]);
-  document.querySelectorAll(`[id="${nlId}"]`).forEach(el=>el.classList.add('on'));
-  window.scrollTo(0,0);
-  document.getElementById('mNav')?.classList.remove('open');
-  // Position disclaimer below nav
-  const disc=document.getElementById('disclaimerBar');
-  if(disc)disc.style.marginTop='54px';
+  const nlId='nl-'+(NL_MAP[p]||'home');
+  document.querySelectorAll(`#${nlId}`).forEach(el=>el.classList.add('on'));
+  window.scrollTo(0,0);document.getElementById('mnv')?.classList.remove('open');
   if(p==='games'){setTimeout(()=>{loadGPage();if(genre){const gf=document.getElementById('gf');if(gf){gf.value=genre;applyF()}}},0)}
-  if(p==='mini')renderMini();
-  if(p==='home'){animCtrs();renderMini();}
+  if(p==='mini')renderMiniPage();
+  if(p==='guides')renderGuidesPage();
+  if(p==='home'){animCtrs();renderHomeMini();renderHomeGames();renderHomeNews();renderHomeGuides();}
 }
 function openGames(genre){showPage('games',genre)}
 
-// GAME LAUNCH
+// ── GAME LAUNCH ──
 function launchGame(title,url,isFree,price){
   document.getElementById('mEmoji').textContent=isFree?'🎮':'🛒';
   document.getElementById('mTitle').textContent=(isFree?'▶ ':'🛒 ')+title;
   document.getElementById('mDisc').style.display=isFree?'none':'block';
-  document.getElementById('mPlayBtn').style.display='none';
+  document.getElementById('mBtn').style.display='none';
   document.getElementById('mBar').style.width='0';
-  document.getElementById('mSub').textContent=isFree?'Connecting to game server...':'Loading store information...';
+  document.getElementById('mSub').textContent=isFree?'Connecting to game server...':'Loading store info...';
   document.getElementById('gModal').classList.add('open');
   let w=0;const iv=setInterval(()=>{
     w+=Math.random()*10+4;document.getElementById('mBar').style.width=Math.min(w,95)+'%';
-    if(w>=60)document.getElementById('mSub').textContent=isFree?'Server ready! Launching game...':'Redirecting to official store...';
+    if(w>=65)document.getElementById('mSub').textContent=isFree?'Server ready! Launching...':'Redirecting to official store...';
     if(w>=95){
       clearInterval(iv);document.getElementById('mBar').style.width='100%';
-      document.getElementById('mSub').textContent=isFree?'✅ Ready! Opening game...':'✅ Opening official store page...';
-      const btn=document.getElementById('mPlayBtn');
-      btn.style.display='inline-flex';
+      document.getElementById('mSub').textContent=isFree?'✅ Opening game...':'✅ Opening official store...';
+      const btn=document.getElementById('mBtn');btn.style.display='inline-flex';
       btn.textContent=isFree?'▶ PLAY FREE NOW':'🛒 GO TO STORE';
       btn.onclick=()=>{if(url&&url!=='undefined')window.open(url,'_blank','noopener');closeModal()};
-      setTimeout(()=>{if(url&&url!=='undefined')window.open(url,'_blank','noopener');closeModal()},600);
+      setTimeout(()=>{if(url&&url!=='undefined')window.open(url,'_blank','noopener');closeModal()},700);
     }
   },75);
 }
@@ -971,25 +923,23 @@ function closeModal(){document.getElementById('gModal').classList.remove('open')
 document.getElementById('gModal').addEventListener('click',e=>{if(e.target===document.getElementById('gModal'))closeModal()});
 window.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-// CONTACT
+// ── CONTACT ──
 function submitForm(){const n=document.getElementById('cN').value,e=document.getElementById('cE').value;if(!n||!e){alert('Please fill your name and email!');return}document.getElementById('cForm').style.display='none';document.getElementById('okBox').style.display='block'}
 function resetForm(){document.getElementById('cForm').style.display='block';document.getElementById('okBox').style.display='none';['cN','cE','cM'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''});document.getElementById('cS').value='General Inquiry'}
 
-// SCROLL ANIM
+// ── SCROLL ANIM ──
 function initAnim(){
-  const els=document.querySelectorAll('.gc,.gdc,.nc,.mini-card,.stat-box,.cb,.ic,.gp');
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target)}}),{threshold:.08});
-  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(22px)';el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el)});
+  const els=document.querySelectorAll('.gc,.gdc,.nc,.mc,.sbox,.cb,.ic,.gp');
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';obs.unobserve(e.target)}}),{threshold:.07});
+  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el)});
 }
 
-// INIT
+// ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
-  renderHomeGames();renderHomeNews();renderHomeGuides();renderMini();animCtrs();
-  setTimeout(initAnim,120);
-  // fix disclaimer position after nav
-  const disc=document.getElementById('disclaimerBar');
-  if(disc)disc.style.marginTop='54px';
+  renderHomeGames();renderHomeMini();renderHomeNews();renderHomeGuides();animCtrs();setTimeout(initAnim,100);
 });
 </script>
 </body>
 </html>
+HTMLEOF
+echo "Done: $(wc -c < /mnt/user-data/outputs/nexus-gaming/index.html) bytes, $(wc -l < /mnt/user-data/outputs/nexus-gaming/index.html) lines"
