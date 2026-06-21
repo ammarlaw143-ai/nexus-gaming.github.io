@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>All Games – NexusPlay</title>
+<meta name="description" content="Browse 1,200+ games across all platforms and genres. Filter by price, platform, genre and more."/>
+<script src="shared.js"></script>
+<script>document.head.insertAdjacentHTML('beforeend',SHARED_CSS)</script>
+</head>
+  <body>
+<script>
+document.write(renderAnnounce());
+document.write(renderNavbar('Games'));
+</script>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> › <span style="color:#fff">Games</span></div>
+    <h1>🎮 All Games</h1>
+    <p>Explore our database of <span style="color:var(--green);font-weight:700">1,200+ games</span> across all platforms and genres.</p>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:16px 32px">
+  <div style="max-width:1300px;margin:0 auto">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <div style="display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 16px;flex:1;min-width:200px">
+        🔍 <input id="search-input" type="text" placeholder="Search games…" style="background:none;border:none;outline:none;color:#fff;font-size:14px;width:100%;font-family:inherit" oninput="filterGames()"/>
+      </div>
+      <select id="genre-filter" onchange="filterGames()" style="background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 16px;color:#fff;font-size:13px;font-family:inherit;outline:none">
+        <option value="">All Genres</option>
+        <option>Action RPG</option><option>Battle Royale</option><option>Tactical Shooter</option>
+        <option>MOBA</option><option>Fighting</option><option>Sports</option><option>Racing</option>
+        <option>Survival</option><option>Simulation</option><option>JRPG</option><option>Roguelite</option>
+      </select>
+      <select id="price-filter" onchange="filterGames()" style="background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 16px;color:#fff;font-size:13px;font-family:inherit;outline:none">
+        <option value="">All Prices</option>
+        <option value="free">Free to Play</option>
+        <option value="paid">Paid Games</option>
+      </select>
+      <select id="sort-filter" onchange="filterGames()" style="background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:9px 16px;color:#fff;font-size:13px;font-family:inherit;outline:none">
+        <option value="rating">Top Rated</option>
+        <option value="newest">Newest First</option>
+        <option value="name">A–Z</option>
+      </select>
+    </div>
+    <!-- Platform pills -->
+    <div style="display:flex;gap:7px;margin-top:12px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--muted);margin-right:4px;line-height:28px">Platforms:</span>
+      <button class="ptag active-plat" onclick="setPlatform(this,'')">All</button>
+      <button class="ptag" onclick="setPlatform(this,'PC')">PC</button>
+      <button class="ptag" onclick="setPlatform(this,'PS5')">PS5</button>
+      <button class="ptag" onclick="setPlatform(this,'Xbox')">Xbox</button>
+      <button class="ptag" onclick="setPlatform(this,'Switch')">Switch</button>
+      <button class="ptag" onclick="setPlatform(this,'Mobile')">Mobile</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div class="section">
+  <div id="count" style="font-size:14px;color:var(--muted);margin-bottom:18px"></div>
+  <div id="games-grid" class="games-grid"></div>
+  <div style="text-align:center;margin-top:36px">
+    <button class="btn-ghost" onclick="loadMore()">Load More Games</button>
+    <p id="load-note" style="font-size:12px;color:var(--dim);margin-top:10px"></p>
+  </div>
+</div>
+
+<div style="max-width:1300px;margin:0 auto;padding:0 32px 48px"><div class="ad-box">Advertisement</div></div>
+<script>document.write(renderTrustBar());document.write(renderFooter())</script>
+
+<style>
+.active-plat{border-color:var(--green)!important;color:var(--green)!important}
+</style>
+<script>
+let activePlat='', shown=20;
+function filterGames(){
+  shown=20;
+  renderGrid();
+}
+function setPlatform(btn,p){
+  activePlat=p;
+  document.querySelectorAll('.active-plat').forEach(b=>b.classList.remove('active-plat'));
+  btn.classList.add('active-plat');
+  filterGames();
+}
+function getFiltered(){
+  const q=document.getElementById('search-input').value.toLowerCase();
+  const genre=document.getElementById('genre-filter').value;
+  const price=document.getElementById('price-filter').value;
+  const sort=document.getElementById('sort-filter').value;
+  let list=[...GAMES];
+  if(q) list=list.filter(g=>g.t.toLowerCase().includes(q)||g.g.toLowerCase().includes(q));
+  if(genre) list=list.filter(g=>g.g.toLowerCase().includes(genre.toLowerCase()));
+  if(price==='free') list=list.filter(g=>g.free);
+  if(price==='paid') list=list.filter(g=>!g.free);
+  if(activePlat) list=list.filter(g=>g.plat&&g.plat.includes(activePlat));
+  if(sort==='rating') list.sort((a,b)=>b.r-a.r);
+  if(sort==='newest') list.sort((a,b)=>(b.year||0)-(a.year||0));
+  if(sort==='name') list.sort((a,b)=>a.t.localeCompare(b.t));
+  return list;
+}
+function renderGrid(){
+  const list=getFiltered();
+  const grid=document.getElementById('games-grid');
+  grid.innerHTML=list.slice(0,shown).map(gameCard).join('');
+  document.getElementById('count').textContent=`Showing ${Math.min(shown,list.length)} of ${list.length} games`;
+  document.getElementById('load-note').textContent=list.length>shown?`${list.length-shown} more games available`:'All games loaded';
+}
+function loadMore(){shown+=20;renderGrid()}
+renderGrid();
+</script>
+</body>
+</html>
